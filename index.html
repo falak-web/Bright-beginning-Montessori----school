@@ -1,1 +1,665 @@
 
+import Link from "next/link";
+import {
+  ArrowRight,
+  ShieldCheck,
+  Users,
+  GraduationCap,
+  CalendarDays,
+  MapPin,
+  Phone,
+  Mail,
+  CheckCircle2,
+  BookOpen,
+  Trophy,
+  HeartHandshake,
+} from "lucide-react";
+
+const events = [
+  {
+    date: "28 SEP 2026",
+    title: "Welcome & Orientation Day",
+    category: "COMMUNITY",
+    image:
+      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=85",
+  },
+  {
+    date: "15 OCT 2026",
+    title: "Annual Science Exhibition",
+    category: "ACADEMIC",
+    image:
+      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=85",
+  },
+  {
+    date: "06 NOV 2026",
+    title: "Inter-School Sports Day",
+    category: "SPORTS",
+    image:
+      "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=85",
+  },
+];
+
+const testimonials = [
+  {
+    name: "Ayesha Khan",
+    role: "Parent of Grade 7 Student",
+    text: "The teachers have been incredibly supportive. We appreciate how seriously the school takes academics and student wellbeing.",
+  },
+  {
+    name: "Muhammad Ahmed",
+    role: "Parent of Grade 5 Student",
+    text: "Communication with the school has been excellent. Our child feels comfortable asking questions and getting support.",
+  },
+  {
+    name: "Sara Malik",
+    role: "Parent of Grade 8 Student",
+    text: "We value the school's emphasis on respect and equal treatment. The learning environment has been very positive.",
+  },
+];
+
+export default function Home() {
+  return (
+    <>
+      {/* TOP BAR */}
+      <div className="topbar">
+        <div className="container topbar-inner">
+          <span>Admissions Office: +92 300 1234567</span>
+          <span>Monday – Friday · 8:00 AM – 4:00 PM</span>
+        </div>
+      </div>
+
+      {/* NAVIGATION */}
+      <header className="navbar">
+        <div className="container nav-inner">
+          <Link href="/" className="logo">
+            <span className="logo-mark">NA</span>
+
+            <span className="logo-text">
+              <strong>Northbridge Academy</strong>
+              <small>Excellence · Equality · Integrity</small>
+            </span>
+          </Link>
+
+          <nav>
+            <a href="#about">About</a>
+            <a href="#academics">Academics</a>
+            <a href="#student-life">Student Life</a>
+            <a href="#safety">Safety</a>
+            <a href="#events">Events</a>
+            <a href="#contact">Contact</a>
+          </nav>
+
+          <a href="#admissions" className="button button-gold">
+            Admissions
+          </a>
+        </div>
+      </header>
+
+      {/* HERO */}
+      <section className="hero">
+        <div className="hero-overlay" />
+
+        <div className="container hero-content">
+          <span className="eyebrow">
+            A SCHOOL BUILT AROUND EVERY STUDENT
+          </span>
+
+          <h1>
+            A place to learn.
+            <br />
+            A place to belong.
+          </h1>
+
+          <p>
+            Strong academics, thoughtful teaching and a secure, respectful
+            environment where every student is encouraged to discover their
+            strengths and prepare for the future.
+          </p>
+
+          <div className="hero-buttons">
+            <a href="#admissions" className="button button-gold">
+              Explore Admissions
+              <ArrowRight size={18} />
+            </a>
+
+            <a href="#about" className="button button-light">
+              Discover Our School
+            </a>
+          </div>
+
+          <div className="hero-stats">
+            <div>
+              <strong>25+</strong>
+              <span>Years Experience</span>
+            </div>
+
+            <div>
+              <strong>98%</strong>
+              <span>Parent Satisfaction</span>
+            </div>
+
+            <div>
+              <strong>1:18</strong>
+              <span>Learning Approach</span>
+            </div>
+
+            <div>
+              <strong>100%</strong>
+              <span>Equal Opportunity</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT */}
+      <section id="about" className="section">
+        <div className="container about-grid">
+          <div className="about-image" />
+
+          <div className="about-content">
+            <span className="section-label">ABOUT OUR SCHOOL</span>
+
+            <h2>
+              Education with purpose, character and care.
+            </h2>
+
+            <p>
+              At Northbridge Academy, education is about more than
+              examinations. We want students to become confident, curious and
+              responsible people who can contribute positively to their
+              communities.
+            </p>
+
+            <p>
+              Our teachers work closely with students and families so that
+              questions are welcomed, effort is valued and every learner has
+              an opportunity to progress.
+            </p>
+
+            <div className="mini-grid">
+              <div className="mini-card">
+                <BookOpen size={24} />
+                <strong>Academic Excellence</strong>
+                <span>
+                  Strong foundations and ambitious learning.
+                </span>
+              </div>
+
+              <div className="mini-card">
+                <HeartHandshake size={24} />
+                <strong>Character</strong>
+                <span>
+                  Integrity, responsibility and confidence.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ACADEMICS */}
+      <section id="academics" className="section light-section">
+        <div className="container">
+          <div className="section-heading">
+            <span className="section-label">ACADEMIC PROGRAMME</span>
+
+            <h2>Learning designed for every stage.</h2>
+
+            <p>
+              Knowledge is combined with communication, creativity,
+              problem-solving and personal development.
+            </p>
+          </div>
+
+          <div className="three-grid">
+            <div className="professional-card">
+              <div className="card-icon">
+                <GraduationCap />
+              </div>
+
+              <span>EARLY YEARS</span>
+
+              <h3>Foundation</h3>
+
+              <p>
+                Building curiosity, confidence and strong foundations for
+                lifelong learning.
+              </p>
+
+              <a href="#contact">
+                Learn more <ArrowRight size={16} />
+              </a>
+            </div>
+
+            <div className="professional-card">
+              <div className="card-icon">
+                <BookOpen />
+              </div>
+
+              <span>PRIMARY</span>
+
+              <h3>Primary School</h3>
+
+              <p>
+                Developing essential academic skills while encouraging
+                creativity and independent thinking.
+              </p>
+
+              <a href="#contact">
+                Learn more <ArrowRight size={16} />
+              </a>
+            </div>
+
+            <div className="professional-card">
+              <div className="card-icon">
+                <Trophy />
+              </div>
+
+              <span>SECONDARY</span>
+
+              <h3>Secondary School</h3>
+
+              <p>
+                Preparing students for examinations, higher education and
+                the responsibilities of adult life.
+              </p>
+
+              <a href="#contact">
+                Learn more <ArrowRight size={16} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* STUDENT LIFE */}
+      <section id="student-life" className="section">
+        <div className="container">
+          <div className="section-heading">
+            <span className="section-label">STUDENT LIFE</span>
+
+            <h2>More than a classroom.</h2>
+
+            <p>
+              Students have opportunities to discover interests, develop
+              leadership skills and build lasting friendships.
+            </p>
+          </div>
+
+          <div className="life-grid">
+            <div className="life-card life-academic">
+              <div>
+                <span>01</span>
+                <h3>Clubs & Activities</h3>
+                <p>
+                  Creative, academic and recreational activities that help
+                  students explore their interests.
+                </p>
+              </div>
+            </div>
+
+            <div className="life-card life-sports">
+              <div>
+                <span>02</span>
+                <h3>Sports & Fitness</h3>
+                <p>
+                  Teamwork, discipline and healthy competition through
+                  organised sporting activities.
+                </p>
+              </div>
+            </div>
+
+            <div className="life-card life-leadership">
+              <div>
+                <span>03</span>
+                <h3>Student Leadership</h3>
+                <p>
+                  Opportunities for students to take responsibility and
+                  contribute to their school community.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SAFETY */}
+      <section id="safety" className="dark-section">
+        <div className="container safety-grid">
+          <div className="safety-content">
+            <span className="section-label gold-label">
+              SAFETY & EQUALITY
+            </span>
+
+            <h2>
+              A school where students can learn with confidence.
+            </h2>
+
+            <p>
+              Student wellbeing is an essential part of education. We use
+              clear procedures, responsible supervision and respectful
+              communication to create a positive environment.
+            </p>
+
+            <div className="safety-points">
+              <div>
+                <ShieldCheck />
+                <span>
+                  <strong>Responsible Supervision</strong>
+                  <small>
+                    Clear supervision procedures across school activities
+                    and shared spaces.
+                  </small>
+                </span>
+              </div>
+
+              <div>
+                <Users />
+                <span>
+                  <strong>Equal Opportunity</strong>
+                  <small>
+                    Students are treated fairly and encouraged to participate.
+                  </small>
+                </span>
+              </div>
+
+              <div>
+                <CheckCircle2 />
+                <span>
+                  <strong>Respect & Anti-Bullying Culture</strong>
+                  <small>
+                    Students are encouraged to speak up and seek support.
+                  </small>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="safety-image" />
+        </div>
+      </section>
+
+      {/* EVENTS */}
+      <section id="events" className="section">
+        <div className="container">
+          <div className="section-heading event-heading">
+            <div>
+              <span className="section-label">WHAT'S HAPPENING</span>
+
+              <h2>School events.</h2>
+
+              <p>
+                Important dates, activities and community events.
+              </p>
+            </div>
+
+            <Link href="/events" className="button button-outline">
+              View All Events
+              <ArrowRight size={17} />
+            </Link>
+          </div>
+
+          <div className="events-grid">
+            {events.map((event) => (
+              <article className="event-card" key={event.title}>
+                <div
+                  className="event-image"
+                  style={{
+                    backgroundImage: `url("${event.image}")`,
+                  }}
+                />
+
+                <div className="event-content">
+                  <div className="event-meta">
+                    <span>{event.date}</span>
+                    <span>{event.category}</span>
+                  </div>
+
+                  <h3>{event.title}</h3>
+
+                  <a href="#contact">
+                    Event Details <ArrowRight size={16} />
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PARENT REVIEWS */}
+      <section className="section light-section">
+        <div className="container">
+          <div className="section-heading">
+            <span className="section-label">PARENT VOICES</span>
+
+            <h2>What our families say.</h2>
+          </div>
+
+          <div className="three-grid">
+            {testimonials.map((review) => (
+              <div className="review-card" key={review.name}>
+                <div className="stars">★★★★★</div>
+
+                <p>“{review.text}”</p>
+
+                <strong>{review.name}</strong>
+
+                <span>{review.role}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ADMISSIONS */}
+      <section id="admissions" className="admission-section">
+        <div className="container admission-inner">
+          <div>
+            <span className="section-label gold-label">
+              ADMISSIONS
+            </span>
+
+            <h2>
+              Let's begin your child's next chapter.
+            </h2>
+
+            <p>
+              Our admissions team can guide your family through availability,
+              requirements and the application process.
+            </p>
+          </div>
+
+          <div className="admission-steps">
+            <div>
+              <span>01</span>
+              <strong>Enquire</strong>
+              <small>
+                Tell us which year group you're interested in.
+              </small>
+            </div>
+
+            <div>
+              <span>02</span>
+              <strong>Visit</strong>
+              <small>
+                Arrange a campus visit and meet our team.
+              </small>
+            </div>
+
+            <div>
+              <span>03</span>
+              <strong>Apply</strong>
+              <small>
+                Complete the admissions process with our team.
+              </small>
+            </div>
+          </div>
+
+          <a href="#contact" className="button button-gold">
+            Start an Enquiry
+            <ArrowRight size={18} />
+          </a>
+        </div>
+      </section>
+
+      {/* CAREERS */}
+      <section className="section">
+        <div className="container career-box">
+          <div>
+            <span className="section-label">CAREERS</span>
+
+            <h2>Great schools are built by great teachers.</h2>
+
+            <p>
+              Passionate educators can submit an application through our
+              dedicated careers system.
+            </p>
+          </div>
+
+          <Link href="/careers" className="button button-dark">
+            Teacher Application
+            <ArrowRight size={18} />
+          </Link>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" className="section light-section">
+        <div className="container">
+          <div className="section-heading">
+            <span className="section-label">CONTACT</span>
+
+            <h2>We're here to help.</h2>
+
+            <p>
+              Contact our admissions and administration team.
+            </p>
+          </div>
+
+          <div className="contact-grid">
+            <div className="contact-list">
+              <div className="contact-item">
+                <Phone />
+                <div>
+                  <strong>Admissions</strong>
+                  <span>+92 300 1234567</span>
+                </div>
+              </div>
+
+              <div className="contact-item">
+                <Mail />
+                <div>
+                  <strong>Email</strong>
+                  <span>admissions@northbridge.edu</span>
+                </div>
+              </div>
+
+              <div className="contact-item">
+                <MapPin />
+                <div>
+                  <strong>Campus</strong>
+                  <span>123 Education Avenue, Lahore, Pakistan</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="contact-form">
+              <h3>Send an enquiry</h3>
+
+              <form>
+                <div className="form-row">
+                  <input
+                    type="text"
+                    placeholder="Parent / Guardian Name"
+                  />
+
+                  <input
+                    type="email"
+                    placeholder="Email Address"
+                  />
+                </div>
+
+                <div className="form-row">
+                  <input
+                    type="tel"
+                    placeholder="Phone Number"
+                  />
+
+                  <select defaultValue="">
+                    <option value="" disabled>
+                      Interested Grade
+                    </option>
+                    <option>Foundation</option>
+                    <option>Grade 1–5</option>
+                    <option>Grade 6–8</option>
+                    <option>Grade 9–10</option>
+                  </select>
+                </div>
+
+                <textarea
+                  placeholder="How can we help?"
+                  rows={5}
+                />
+
+                <button type="button" className="button button-dark">
+                  Send Enquiry
+                  <ArrowRight size={17} />
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer>
+        <div className="container footer-grid">
+          <div>
+            <div className="footer-logo">
+              <span className="logo-mark">NA</span>
+
+              <strong>Northbridge Academy</strong>
+            </div>
+
+            <p>
+              A learning community committed to academic growth, student
+              wellbeing and equal opportunity.
+            </p>
+          </div>
+
+          <div>
+            <h4>School</h4>
+
+            <a href="#about">About</a>
+            <a href="#academics">Academics</a>
+            <a href="#student-life">Student Life</a>
+            <a href="#safety">Safety & Equality</a>
+          </div>
+
+          <div>
+            <h4>Admissions</h4>
+
+            <a href="#admissions">Admissions</a>
+            <Link href="/careers">Careers</Link>
+            <a href="#events">Events</a>
+            <a href="#contact">Contact</a>
+          </div>
+
+          <div>
+            <h4>Contact</h4>
+
+            <span>+92 300 1234567</span>
+            <span>admissions@northbridge.edu</span>
+            <span>Lahore, Pakistan</span>
+          </div>
+        </div>
+
+        <div className="container footer-bottom">
+          © {new Date().getFullYear()} Northbridge Academy. All rights
+          reserved.
+        </div>
+      </footer>
+    </>
+  );
+}
