@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -2847,8 +2846,9 @@ footer{
         <form class="modal-form" id="loginForm">
 
             <input
-                id="adminUsername"
-                placeholder="Username"
+                id="adminEmail"
+                type="email"
+                placeholder="Admin Email"
                 required
             >
 
@@ -2878,7 +2878,7 @@ footer{
                 color:#89969c;
             "
         >
-            Demo login: admin / bright123
+            Use the administrator email and password created in Firebase Authentication.
         </small>
 
     </div>
@@ -3444,13 +3444,15 @@ footer{
 
                         <div class="admin-note">
 
-                            This version stores dashboard information
-                            in the browser.
+                            This dashboard is connected to Firebase Firestore.
 
-                            For a real school website where the owner
-                            can log in from any device, the next step
-                            is connecting this dashboard to a secure
-                            online database.
+                            Teachers, announcements, school information
+                            and approved reviews are stored online, so
+                            visitors on different phones and computers
+                            see the same published information.
+
+                            Keep your Firebase project and Firestore
+                            security rules private and configured correctly.
 
                         </div>
 
@@ -3505,14 +3507,13 @@ footer{
 </button>
 
 
-<script>
+<script type="module">
 
 /* =========================================================
-   DATA
+   FIREBASE + DATA
    ========================================================= */
 
 const defaultData = {
-
     school:{
         name:"Bright Beggining",
         email:"",
@@ -3522,89 +3523,164 @@ const defaultData = {
         hero:"",
         about:""
     },
-
     stats:{
         students:"",
         teachers:"",
         classes:"",
         years:""
     },
-
     teachers:[],
-
     announcements:[],
-
     reviews:[],
-
     messages:[],
-
     admissions:[],
-
     applications:[]
-
 };
 
+let data = JSON.parse(JSON.stringify(defaultData));
 
-let data = loadData();
+/*
+  IMPORTANT:
+  1. Create a Firebase project.
+  2. Enable Firestore Database.
+  3. Enable Authentication > Email/Password.
+  4. Put your Firebase Web App config below.
+*/
+const firebaseConfig = {
+    apiKey: "PASTE_YOUR_FIREBASE_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_FIREBASE_APP_ID"
+};
 
+const ADMIN_EMAIL = "admin@brightbeggining.com";
 
-function loadData(){
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import {
+    getFirestore,
+    collection,
+    doc,
+    setDoc,
+    addDoc,
+    deleteDoc,
+    updateDoc,
+    onSnapshot,
+    getDocs,
+    writeBatch,
+    query,
+    where
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
-    const saved =
-        localStorage.getItem("brightBegginingData");
+const firebaseApp = initializeApp(firebaseConfig);
+const db = getFirestore(firebaseApp);
+const auth = getAuth(firebaseApp);
 
-    if(!saved){
+let adminUnsubscribers = [];
 
-        return JSON.parse(
-            JSON.stringify(defaultData)
-        );
-
-    }
-
-    try{
-
-        const parsed=JSON.parse(saved);
-
-        return {
-
-            ...defaultData,
-
-            ...parsed,
-
-            school:{
-                ...defaultData.school,
-                ...(parsed.school || {})
-            },
-
-            stats:{
-                ...defaultData.stats,
-                ...(parsed.stats || {})
-            }
-
-        };
-
-    }catch{
-
-        return JSON.parse(
-            JSON.stringify(defaultData)
-        );
-
-    }
-
+function firebaseReady(){
+    return !firebaseConfig.apiKey.startsWith("PASTE_") &&
+           !firebaseConfig.projectId.startsWith("YOUR_");
 }
 
+function showFirebaseSetupMessage(){
+    toast("Firebase is not connected yet. Add your Firebase config to this index.html.");
+}
 
-function saveData(){
-
-    localStorage.setItem(
-        "brightBegginingData",
-        JSON.stringify(data)
+function sortByNewest(items){
+    return items.sort((a,b)=>
+        Number(b.createdAt || 0) - Number(a.createdAt || 0)
     );
-
 }
 
+function startPublicRealtime(){
+    if(!firebaseReady()){
+        renderWebsite();
+        return;
+    }
+
+    onSnapshot(doc(db,"site","main"), snap=>{
+        if(snap.exists()){
+            const remote=snap.data();
+            data.school={...defaultData.school,...(remote.school||{})};
+            data.stats={...defaultData.stats,...(remote.stats||{})};
+            renderWebsite();
+            loadAdminValues();
+        }
+    }, error=>{
+        console.error("School data:",error);
+    });
+
+    onSnapshot(collection(db,"teachers"), snap=>{
+        data.teachers=sortByNewest(
+            snap.docs.map(d=>({id:d.id,...d.data()}))
+        );
+        renderWebsite();
+    }, error=>console.error("Teachers:",error));
+
+    onSnapshot(collection(db,"announcements"), snap=>{
+        data.announcements=sortByNewest(
+            snap.docs.map(d=>({id:d.id,...d.data()}))
+        );
+        renderWebsite();
+    }, error=>console.error("Announcements:",error));
+
+    onSnapshot(query(collection(db,"reviews"),where("approved","==",true)), snap=>{
+        data.reviews=sortByNewest(
+            snap.docs.map(d=>({id:d.id,...d.data()}))
+        );
+        renderWebsite();
+    }, error=>console.error("Reviews:",error));
+}
+
+function startAdminRealtime(){
+    stopAdminRealtime();
+    if(!auth.currentUser || !firebaseReady()) return;
+
+    const privateCollections=[
+        ["messages","messages"],
+        ["admissions","admissions"],
+        ["applications","applications"],
+        ["reviews","reviews"]
+    ];
+
+    privateCollections.forEach(([collectionName,key])=>{
+        const unsub=onSnapshot(collection(db,collectionName),snap=>{
+            data[key]=sortByNewest(
+                snap.docs.map(d=>({id:d.id,...d.data()}))
+            );
+            renderAdmin();
+        },error=>{
+            console.error(collectionName,error);
+            toast("Could not load "+collectionName+". Check Firestore rules.");
+        });
+        adminUnsubscribers.push(unsub);
+    });
+}
+
+function stopAdminRealtime(){
+    adminUnsubscribers.forEach(unsub=>{
+        try{ unsub(); }catch(e){}
+    });
+    adminUnsubscribers=[];
+}
+
+async function saveSiteData(){
+    await setDoc(doc(db,"site","main"),{
+        school:data.school,
+        stats:data.stats
+    },{merge:true});
+}
 
 /* =========================================================
+   ESCAPE/* =========================================================
    ESCAPE
    ========================================================= */
 
@@ -3994,46 +4070,31 @@ function renderReviews(){
 
 document
 .getElementById("contactForm")
-.addEventListener("submit",event=>{
-
+.addEventListener("submit",async event=>{
     event.preventDefault();
 
+    const item={
+        name:document.getElementById("contactName").value.trim(),
+        email:document.getElementById("contactFormEmail").value.trim(),
+        phone:document.getElementById("contactFormPhone").value.trim(),
+        subject:document.getElementById("contactSubject").value.trim(),
+        message:document.getElementById("contactMessage").value.trim(),
+        createdAt:Date.now(),
+        date:new Date().toLocaleString()
+    };
 
-    data.messages.unshift({
-
-        id:Date.now(),
-
-        name:
-            document.getElementById("contactName").value,
-
-        email:
-            document.getElementById("contactFormEmail").value,
-
-        phone:
-            document.getElementById("contactFormPhone").value,
-
-        subject:
-            document.getElementById("contactSubject").value,
-
-        message:
-            document.getElementById("contactMessage").value,
-
-        date:
-            new Date().toLocaleString()
-
-    });
-
-
-    saveData();
-
-    event.target.reset();
-
-    renderAdmin();
-
-    toast(
-        "Your message has been submitted."
-    );
-
+    try{
+        if(!firebaseReady()){
+            showFirebaseSetupMessage();
+            return;
+        }
+        await addDoc(collection(db,"messages"),item);
+        event.target.reset();
+        toast("Your message has been submitted.");
+    }catch(error){
+        console.error(error);
+        toast("Could not send your message.");
+    }
 });
 
 
@@ -4043,54 +4104,34 @@ document
 
 document
 .getElementById("admissionForm")
-.addEventListener("submit",event=>{
-
+.addEventListener("submit",async event=>{
     event.preventDefault();
 
+    const item={
+        student:document.getElementById("studentName").value.trim(),
+        parent:document.getElementById("parentName").value.trim(),
+        age:document.getElementById("studentAge").value.trim(),
+        className:document.getElementById("studentClass").value,
+        phone:document.getElementById("admissionPhone").value.trim(),
+        email:document.getElementById("admissionEmail").value.trim(),
+        message:document.getElementById("admissionMessage").value.trim(),
+        createdAt:Date.now(),
+        date:new Date().toLocaleString()
+    };
 
-    data.admissions.unshift({
-
-        id:Date.now(),
-
-        student:
-            document.getElementById("studentName").value,
-
-        parent:
-            document.getElementById("parentName").value,
-
-        age:
-            document.getElementById("studentAge").value,
-
-        className:
-            document.getElementById("studentClass").value,
-
-        phone:
-            document.getElementById("admissionPhone").value,
-
-        email:
-            document.getElementById("admissionEmail").value,
-
-        message:
-            document.getElementById("admissionMessage").value,
-
-        date:
-            new Date().toLocaleString()
-
-    });
-
-
-    saveData();
-
-    event.target.reset();
-
-    closeModal("admissionModal");
-
-    renderAdmin();
-
-    toast(
-        "Admission enquiry submitted."
-    );
-
+    try{
+        if(!firebaseReady()){
+            showFirebaseSetupMessage();
+            return;
+        }
+        await addDoc(collection(db,"admissions"),item);
+        event.target.reset();
+        closeModal("admissionModal");
+        toast("Admission enquiry submitted.");
+    }catch(error){
+        console.error(error);
+        toast("Could not submit the admission enquiry.");
+    }
 });
 
 
@@ -4100,51 +4141,33 @@ document
 
 document
 .getElementById("teacherApplicationForm")
-.addEventListener("submit",event=>{
-
+.addEventListener("submit",async event=>{
     event.preventDefault();
 
+    const item={
+        name:document.getElementById("applicantName").value.trim(),
+        email:document.getElementById("applicantEmail").value.trim(),
+        phone:document.getElementById("applicantPhone").value.trim(),
+        subject:document.getElementById("applicantSubject").value.trim(),
+        experience:document.getElementById("applicantExperience").value,
+        message:document.getElementById("applicantMessage").value.trim(),
+        createdAt:Date.now(),
+        date:new Date().toLocaleString()
+    };
 
-    data.applications.unshift({
-
-        id:Date.now(),
-
-        name:
-            document.getElementById("applicantName").value,
-
-        email:
-            document.getElementById("applicantEmail").value,
-
-        phone:
-            document.getElementById("applicantPhone").value,
-
-        subject:
-            document.getElementById("applicantSubject").value,
-
-        experience:
-            document.getElementById("applicantExperience").value,
-
-        message:
-            document.getElementById("applicantMessage").value,
-
-        date:
-            new Date().toLocaleString()
-
-    });
-
-
-    saveData();
-
-    event.target.reset();
-
-    closeModal("teacherModal");
-
-    renderAdmin();
-
-    toast(
-        "Teacher application submitted."
-    );
-
+    try{
+        if(!firebaseReady()){
+            showFirebaseSetupMessage();
+            return;
+        }
+        await addDoc(collection(db,"applications"),item);
+        event.target.reset();
+        closeModal("teacherModal");
+        toast("Teacher application submitted.");
+    }catch(error){
+        console.error(error);
+        toast("Could not submit the teacher application.");
+    }
 });
 
 
@@ -4154,44 +4177,31 @@ document
 
 document
 .getElementById("reviewForm")
-.addEventListener("submit",event=>{
-
+.addEventListener("submit",async event=>{
     event.preventDefault();
 
-
-    data.reviews.unshift({
-
-        id:Date.now(),
-
-        name:
-            document.getElementById("reviewName").value,
-
-        rating:
-            document.getElementById("reviewRating").value,
-
-        message:
-            document.getElementById("reviewMessage").value,
-
+    const item={
+        name:document.getElementById("reviewName").value.trim(),
+        rating:Number(document.getElementById("reviewRating").value),
+        message:document.getElementById("reviewMessage").value.trim(),
         approved:false,
+        createdAt:Date.now(),
+        date:new Date().toLocaleString()
+    };
 
-        date:
-            new Date().toLocaleString()
-
-    });
-
-
-    saveData();
-
-    event.target.reset();
-
-    closeModal("reviewModal");
-
-    renderAdmin();
-
-    toast(
-        "Review submitted for approval."
-    );
-
+    try{
+        if(!firebaseReady()){
+            showFirebaseSetupMessage();
+            return;
+        }
+        await addDoc(collection(db,"reviews"),item);
+        event.target.reset();
+        closeModal("reviewModal");
+        toast("Review submitted for approval.");
+    }catch(error){
+        console.error(error);
+        toast("Could not submit the review.");
+    }
 });
 
 
@@ -4201,47 +4211,51 @@ document
 
 document
 .getElementById("loginForm")
-.addEventListener("submit",event=>{
-
+.addEventListener("submit",async event=>{
     event.preventDefault();
 
+    const email=document.getElementById("adminEmail").value.trim();
+    const password=document.getElementById("adminPassword").value;
 
-    const username =
-        document.getElementById("adminUsername").value;
+    try{
+        if(!firebaseReady()){
+            showFirebaseSetupMessage();
+            return;
+        }
 
-    const password =
-        document.getElementById("adminPassword").value;
+        if(email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()){
+            toast("Use the administrator email configured for this website.");
+            return;
+        }
 
-
-    if(
-        username==="admin" &&
-        password==="bright123"
-    ){
+        await signInWithEmailAndPassword(auth,email,password);
 
         closeModal("loginModal");
-
-        document
-        .getElementById("adminPanel")
-        .classList.add("show");
-
+        document.getElementById("adminPanel").classList.add("show");
+        startAdminRealtime();
+        loadAdminValues();
         renderAdmin();
-
-        toast(
-            "Admin dashboard opened."
-        );
-
-    }else{
-
-        toast(
-            "Incorrect username or password."
-        );
-
+        toast("Admin dashboard opened.");
+    }catch(error){
+        console.error(error);
+        toast("Incorrect email/password or Firebase Authentication is not configured.");
     }
+});
 
+onAuthStateChanged(auth,user=>{
+    if(user && user.email && user.email.toLowerCase()===ADMIN_EMAIL.toLowerCase()){
+        startAdminRealtime();
+        document.getElementById("adminPanel").classList.add("show");
+        loadAdminValues();
+        renderAdmin();
+    }else if(user){
+        signOut(auth).catch(()=>{});
+    }
 });
 
 
 /* =========================================================
+   ADMIN NAVIGATION/* =========================================================
    ADMIN NAVIGATION
    ========================================================= */
 
@@ -4285,12 +4299,12 @@ document
 });
 
 
-function closeAdmin(){
-
-    document
-    .getElementById("adminPanel")
-    .classList.remove("show");
-
+async function closeAdmin(){
+    stopAdminRealtime();
+    document.getElementById("adminPanel").classList.remove("show");
+    if(auth.currentUser){
+        try{ await signOut(auth); }catch(error){ console.error(error); }
+    }
 }
 
 
@@ -4300,49 +4314,26 @@ function closeAdmin(){
 
 document
 .getElementById("schoolForm")
-.addEventListener("submit",event=>{
-
+.addEventListener("submit",async event=>{
     event.preventDefault();
 
+    data.school.name=document.getElementById("editSchoolName").value.trim() || "Bright Beggining";
+    data.school.email=document.getElementById("editEmail").value.trim();
+    data.school.phone=document.getElementById("editPhone").value.trim();
+    data.school.address=document.getElementById("editAddress").value.trim();
+    data.school.hours=document.getElementById("editHours").value.trim();
+    data.school.hero=document.getElementById("editHero").value.trim();
+    data.school.about=document.getElementById("editAbout").value.trim();
 
-    data.school.name =
-        document.getElementById("editSchoolName").value
-        ||
-        "Bright Beggining";
-
-
-    data.school.email =
-        document.getElementById("editEmail").value;
-
-
-    data.school.phone =
-        document.getElementById("editPhone").value;
-
-
-    data.school.address =
-        document.getElementById("editAddress").value;
-
-
-    data.school.hours =
-        document.getElementById("editHours").value;
-
-
-    data.school.hero =
-        document.getElementById("editHero").value;
-
-
-    data.school.about =
-        document.getElementById("editAbout").value;
-
-
-    saveData();
-
-    renderWebsite();
-
-    toast(
-        "School information saved."
-    );
-
+    try{
+        if(!auth.currentUser) throw new Error("Not signed in");
+        await saveSiteData();
+        renderWebsite();
+        toast("School information saved online.");
+    }catch(error){
+        console.error(error);
+        toast("Could not save school information.");
+    }
 });
 
 
@@ -4352,41 +4343,22 @@ document
 
 document
 .getElementById("statsForm")
-.addEventListener("submit",event=>{
-
+.addEventListener("submit",async event=>{
     event.preventDefault();
 
+    data.stats.students=document.getElementById("editStudents").value.trim();
+    data.stats.teachers=document.getElementById("editTeachersCount").value.trim();
+    data.stats.classes=document.getElementById("editClasses").value.trim();
+    data.stats.years=document.getElementById("editYears").value.trim();
 
-    data.stats.students =
-        document.getElementById("editStudents").value;
-
-
-    data.stats.teachers =
-        document.getElementById("editTeachersCount").value;
-
-
-    data.stats.classes =
-        document.getElementById("editClasses").value;
-
-
-    data.stats.years =
-        document.getElementById("editYears").value;
-
-
-    /*
-       IMPORTANT:
-       These values are intentionally NOT shown
-       on the public website.
-       The current version avoids fake statistics.
-    */
-
-
-    saveData();
-
-    toast(
-        "Statistics saved for future use."
-    );
-
+    try{
+        if(!auth.currentUser) throw new Error("Not signed in");
+        await saveSiteData();
+        toast("Statistics saved online.");
+    }catch(error){
+        console.error(error);
+        toast("Could not save statistics.");
+    }
 });
 
 
@@ -4396,40 +4368,26 @@ document
 
 document
 .getElementById("teacherForm")
-.addEventListener("submit",event=>{
-
+.addEventListener("submit",async event=>{
     event.preventDefault();
 
+    const item={
+        name:document.getElementById("newTeacherName").value.trim(),
+        role:document.getElementById("newTeacherRole").value.trim(),
+        image:document.getElementById("newTeacherImage").value.trim(),
+        bio:document.getElementById("newTeacherBio").value.trim(),
+        createdAt:Date.now()
+    };
 
-    data.teachers.push({
-
-        id:Date.now(),
-
-        name:
-            document.getElementById("newTeacherName").value,
-
-        role:
-            document.getElementById("newTeacherRole").value,
-
-        image:
-            document.getElementById("newTeacherImage").value,
-
-        bio:
-            document.getElementById("newTeacherBio").value
-
-    });
-
-
-    saveData();
-
-    event.target.reset();
-
-    renderWebsite();
-
-    toast(
-        "Teacher added."
-    );
-
+    try{
+        if(!auth.currentUser) throw new Error("Not signed in");
+        await addDoc(collection(db,"teachers"),item);
+        event.target.reset();
+        toast("Teacher added online. Everyone can now see this teacher.");
+    }catch(error){
+        console.error(error);
+        toast("Could not add teacher. Check Firebase/Firestore rules.");
+    }
 });
 
 
@@ -4439,41 +4397,30 @@ document
 
 document
 .getElementById("announcementForm")
-.addEventListener("submit",event=>{
-
+.addEventListener("submit",async event=>{
     event.preventDefault();
 
+    const item={
+        title:document.getElementById("newsTitle").value.trim(),
+        text:document.getElementById("newsText").value.trim(),
+        createdAt:Date.now(),
+        date:new Date().toLocaleDateString()
+    };
 
-    data.announcements.unshift({
-
-        id:Date.now(),
-
-        title:
-            document.getElementById("newsTitle").value,
-
-        text:
-            document.getElementById("newsText").value,
-
-        date:
-            new Date().toLocaleDateString()
-
-    });
-
-
-    saveData();
-
-    event.target.reset();
-
-    renderWebsite();
-
-    toast(
-        "Announcement published."
-    );
-
+    try{
+        if(!auth.currentUser) throw new Error("Not signed in");
+        await addDoc(collection(db,"announcements"),item);
+        event.target.reset();
+        toast("Announcement published online.");
+    }catch(error){
+        console.error(error);
+        toast("Could not publish announcement.");
+    }
 });
 
 
 /* =========================================================
+   ADMIN RENDER/* =========================================================
    ADMIN RENDER
    ========================================================= */
 
@@ -4532,7 +4479,7 @@ function renderAdmin(){
 
                     <button
                         class="delete-btn"
-                        onclick="deleteTeacher(${item.id})"
+                        onclick="deleteTeacher('${item.id}')"
                     >
                         Delete
                     </button>
@@ -4584,7 +4531,7 @@ function renderAdmin(){
 
                     <button
                         class="delete-btn"
-                        onclick="deleteNews(${item.id})"
+                        onclick="deleteNews('${item.id}')"
                     >
                         Delete
                     </button>
@@ -4654,7 +4601,7 @@ function renderAdmin(){
                                     color:#227345;
                                     margin-right:5px;
                                 "
-                                onclick="approveReview(${item.id})"
+                                onclick="approveReview('${item.id}')"
                             >
                                 Approve
                             </button>`
@@ -4665,7 +4612,7 @@ function renderAdmin(){
 
                         <button
                             class="delete-btn"
-                            onclick="deleteReview(${item.id})"
+                            onclick="deleteReview('${item.id}')"
                         >
                             Delete
                         </button>
@@ -4724,7 +4671,7 @@ function renderAdmin(){
 
                     <button
                         class="delete-btn"
-                        onclick="deleteMessage(${item.id})"
+                        onclick="deleteMessage('${item.id}')"
                     >
                         Delete
                     </button>
@@ -4788,7 +4735,7 @@ function renderAdmin(){
 
                     <button
                         class="delete-btn"
-                        onclick="deleteAdmission(${item.id})"
+                        onclick="deleteAdmission('${item.id}')"
                     >
                         Delete
                     </button>
@@ -4852,7 +4799,7 @@ function renderAdmin(){
 
                     <button
                         class="delete-btn"
-                        onclick="deleteApplication(${item.id})"
+                        onclick="deleteApplication('${item.id}')"
                     >
                         Delete
                     </button>
@@ -4867,147 +4814,85 @@ function renderAdmin(){
 
 
 /* =========================================================
-   DELETE FUNCTIONS
+   DELETE / APPROVE FUNCTIONS
    ========================================================= */
 
-function deleteTeacher(id){
-
-    if(!confirm(
-        "Remove this teacher?"
-    )){
-        return;
+async function deleteTeacher(id){
+    if(!confirm("Remove this teacher?")) return;
+    try{
+        await deleteDoc(doc(db,"teachers",String(id)));
+        toast("Teacher removed.");
+    }catch(error){
+        console.error(error);
+        toast("Could not remove teacher.");
     }
-
-    data.teachers =
-        data.teachers.filter(
-            item=>item.id!==id
-        );
-
-    saveData();
-
-    renderWebsite();
-
-    toast("Teacher removed.");
-
 }
 
-
-function deleteNews(id){
-
-    if(!confirm(
-        "Delete this announcement?"
-    )){
-        return;
+async function deleteNews(id){
+    if(!confirm("Delete this announcement?")) return;
+    try{
+        await deleteDoc(doc(db,"announcements",String(id)));
+        toast("Announcement deleted.");
+    }catch(error){
+        console.error(error);
+        toast("Could not delete announcement.");
     }
-
-    data.announcements =
-        data.announcements.filter(
-            item=>item.id!==id
-        );
-
-    saveData();
-
-    renderWebsite();
-
-    toast("Announcement deleted.");
-
 }
 
-
-function approveReview(id){
-
-    const review =
-        data.reviews.find(
-            item=>item.id===id
-        );
-
-
-    if(review){
-
-        review.approved=true;
-
-        saveData();
-
-        renderWebsite();
-
+async function approveReview(id){
+    try{
+        await updateDoc(doc(db,"reviews",String(id)),{approved:true});
         toast("Review published.");
-
+    }catch(error){
+        console.error(error);
+        toast("Could not publish review.");
     }
-
 }
 
-
-function deleteReview(id){
-
-    if(!confirm(
-        "Delete this review?"
-    )){
-        return;
+async function deleteReview(id){
+    if(!confirm("Delete this review?")) return;
+    try{
+        await deleteDoc(doc(db,"reviews",String(id)));
+        toast("Review deleted.");
+    }catch(error){
+        console.error(error);
+        toast("Could not delete review.");
     }
-
-    data.reviews =
-        data.reviews.filter(
-            item=>item.id!==id
-        );
-
-    saveData();
-
-    renderWebsite();
-
-    toast("Review deleted.");
-
 }
 
-
-function deleteMessage(id){
-
-    data.messages =
-        data.messages.filter(
-            item=>item.id!==id
-        );
-
-    saveData();
-
-    renderAdmin();
-
-    toast("Message deleted.");
-
+async function deleteMessage(id){
+    try{
+        await deleteDoc(doc(db,"messages",String(id)));
+        toast("Message deleted.");
+    }catch(error){
+        console.error(error);
+        toast("Could not delete message.");
+    }
 }
 
-
-function deleteAdmission(id){
-
-    data.admissions =
-        data.admissions.filter(
-            item=>item.id!==id
-        );
-
-    saveData();
-
-    renderAdmin();
-
-    toast("Admission enquiry deleted.");
-
+async function deleteAdmission(id){
+    try{
+        await deleteDoc(doc(db,"admissions",String(id)));
+        toast("Admission enquiry deleted.");
+    }catch(error){
+        console.error(error);
+        toast("Could not delete admission enquiry.");
+    }
 }
 
-
-function deleteApplication(id){
-
-    data.applications =
-        data.applications.filter(
-            item=>item.id!==id
-        );
-
-    saveData();
-
-    renderAdmin();
-
-    toast("Application deleted.");
-
+async function deleteApplication(id){
+    try{
+        await deleteDoc(doc(db,"applications",String(id)));
+        toast("Application deleted.");
+    }catch(error){
+        console.error(error);
+        toast("Could not delete application.");
+    }
 }
 
 
 /* =========================================================
+   ADMIN FORM VALUES/* =========================================================
    ADMIN FORM VALUES
    ========================================================= */
 
@@ -5131,38 +5016,53 @@ function exportData(){
    RESET
    ========================================================= */
 
-function resetData(){
+async function deleteAllDocuments(collectionName){
+    const snap=await getDocs(collection(db,collectionName));
+    const batch=writeBatch(db);
+    snap.docs.forEach(item=>batch.delete(item.ref));
+    if(snap.docs.length) await batch.commit();
+}
 
-    if(!confirm(
-        "Reset all saved website data?"
-    )){
+async function resetData(){
+    if(!auth.currentUser){
+        toast("Please sign in as administrator.");
         return;
     }
 
+    if(!confirm("Reset ALL online school website data? This cannot be undone.")){
+        return;
+    }
 
-    localStorage.removeItem(
-        "brightBegginingData"
-    );
+    try{
+        await setDoc(doc(db,"site","main"),{
+            school:defaultData.school,
+            stats:defaultData.stats
+        });
 
+        for(const collectionName of [
+            "teachers",
+            "announcements",
+            "reviews",
+            "messages",
+            "admissions",
+            "applications"
+        ]){
+            await deleteAllDocuments(collectionName);
+        }
 
-    data =
-        JSON.parse(
-            JSON.stringify(defaultData)
-        );
-
-
-    renderWebsite();
-
-    loadAdminValues();
-
-    toast(
-        "Website data reset."
-    );
-
+        data=JSON.parse(JSON.stringify(defaultData));
+        renderWebsite();
+        loadAdminValues();
+        toast("All online website data has been reset.");
+    }catch(error){
+        console.error(error);
+        toast("Could not reset the online data.");
+    }
 }
 
 
 /* =========================================================
+   ADMIN SHORTCUT/* =========================================================
    ADMIN SHORTCUT
    ========================================================= */
 
@@ -5242,7 +5142,7 @@ document.getElementById(
 
 
 renderWebsite();
-
+startPublicRealtime();
 loadAdminValues();
 
 
@@ -5268,4 +5168,3 @@ window.addEventListener(
 
 </body>
 </html>
-```
