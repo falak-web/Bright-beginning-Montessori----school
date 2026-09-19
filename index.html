@@ -1,39 +1,61 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Bright Beginning School - Where Every Beginning Becomes a Bright Future">
-<title>Bright Beginning School</title>
+
+<meta name="description"
+content="Bright Beggining — A modern learning environment built around growth, knowledge, confidence and opportunity.">
+
+<title>Bright Beggining</title>
 
 <style>
+
+/* =========================================================
+   BRIGHT BEGGINING
+   PROFESSIONAL SCHOOL WEBSITE
+   ========================================================= */
+
 :root{
-    --primary:#087ea4;
-    --primary-dark:#075b78;
-    --secondary:#12b8c9;
-    --accent:#f5c451;
-    --dark:#092c3e;
-    --text:#243746;
-    --muted:#6d7c86;
-    --light:#f4fbfd;
+    --navy:#082c3c;
+    --deep:#041c29;
+    --blue:#087fa3;
+    --cyan:#16c5d3;
+    --gold:#f5c65b;
+    --cream:#f8fbfc;
     --white:#ffffff;
-    --shadow:0 15px 45px rgba(7,70,95,.12);
-    --radius:22px;
-    --transition:.3s ease;
+    --text:#263943;
+    --muted:#71818a;
+    --border:#e5eef1;
+    --shadow:0 20px 60px rgba(4,35,48,.12);
+    --radius:24px;
 }
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
+}
+
+html{
     scroll-behavior:smooth;
 }
 
 body{
-    font-family:Inter,Segoe UI,Arial,sans-serif;
+    font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        sans-serif;
     color:var(--text);
     background:#fff;
     overflow-x:hidden;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
 }
 
 button,
@@ -47,101 +69,108 @@ button{
     cursor:pointer;
 }
 
-a{
-    text-decoration:none;
-    color:inherit;
-}
-
 img{
     max-width:100%;
+    display:block;
 }
 
-/* =========================
-   LOADING SCREEN
-========================= */
+
+/* =========================================================
+   LOADER
+   ========================================================= */
 
 .loader{
     position:fixed;
     inset:0;
-    background:linear-gradient(135deg,#064b66,#09a5bc);
+    background:
+        radial-gradient(circle at 20% 20%,rgba(22,197,211,.25),transparent 35%),
+        linear-gradient(135deg,#041c29,#087fa3);
     display:flex;
     justify-content:center;
     align-items:center;
     z-index:99999;
-    transition:.7s;
+    transition:.7s ease;
 }
 
-.loader.hide{
+.loader.hidden{
     opacity:0;
     visibility:hidden;
 }
 
-.loader-content{
+.loader-inner{
     text-align:center;
     color:white;
 }
 
-.loader-logo{
-    width:85px;
-    height:85px;
-    border:4px solid rgba(255,255,255,.3);
+.loader-circle{
+    width:65px;
+    height:65px;
+    border:4px solid rgba(255,255,255,.2);
     border-top-color:white;
     border-radius:50%;
     animation:spin 1s linear infinite;
-    margin:auto auto 25px;
+    margin:0 auto 22px;
 }
 
 .loader h2{
-    font-size:28px;
+    font-size:27px;
+}
+
+.loader p{
+    opacity:.75;
+    margin-top:7px;
 }
 
 @keyframes spin{
-    to{transform:rotate(360deg)}
+    to{
+        transform:rotate(360deg);
+    }
 }
 
-/* =========================
+
+/* =========================================================
    TOP BAR
-========================= */
+   ========================================================= */
 
 .topbar{
-    background:#062d3e;
+    background:var(--deep);
     color:white;
     padding:9px 5%;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    font-size:13px;
+    font-size:12px;
 }
 
 .topbar-left,
 .topbar-right{
     display:flex;
     gap:20px;
-    align-items:center;
 }
 
 .topbar span{
-    opacity:.9;
+    opacity:.82;
 }
 
-/* =========================
+
+/* =========================================================
    NAVBAR
-========================= */
+   ========================================================= */
 
 .navbar{
     position:sticky;
     top:0;
     z-index:5000;
     background:rgba(255,255,255,.96);
-    backdrop-filter:blur(15px);
-    box-shadow:0 4px 25px rgba(0,0,0,.06);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(0,0,0,.05);
 }
 
 .nav-container{
     width:90%;
-    max-width:1400px;
+    max-width:1350px;
     margin:auto;
-    min-height:78px;
+    min-height:82px;
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -154,60 +183,62 @@ img{
 }
 
 .logo{
-    width:52px;
-    height:52px;
+    width:50px;
+    height:50px;
     border-radius:16px;
-    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    background:linear-gradient(135deg,var(--blue),var(--cyan));
     display:flex;
     justify-content:center;
     align-items:center;
     color:white;
-    font-size:23px;
+    font-size:19px;
     font-weight:900;
-    box-shadow:0 8px 20px rgba(8,126,164,.25);
+    box-shadow:0 9px 25px rgba(8,127,163,.25);
 }
 
 .brand-text h2{
-    color:var(--dark);
+    color:var(--navy);
     font-size:20px;
     line-height:1;
 }
 
 .brand-text span{
-    font-size:10px;
-    letter-spacing:2px;
-    color:var(--primary);
-    font-weight:700;
+    display:block;
+    color:var(--blue);
+    font-size:9px;
+    letter-spacing:3px;
+    font-weight:800;
+    margin-top:5px;
 }
 
 .nav-links{
     display:flex;
     align-items:center;
-    gap:25px;
+    gap:26px;
 }
 
 .nav-links a{
+    color:#43545d;
     font-size:14px;
-    font-weight:600;
-    color:#42535d;
+    font-weight:650;
+    padding:31px 0;
     position:relative;
-    padding:30px 0;
 }
 
 .nav-links a::after{
     content:"";
     position:absolute;
     left:0;
-    bottom:22px;
+    bottom:23px;
     width:0;
     height:3px;
-    border-radius:5px;
-    background:var(--secondary);
-    transition:.3s;
+    border-radius:10px;
+    background:var(--cyan);
+    transition:.25s;
 }
 
 .nav-links a:hover{
-    color:var(--primary);
+    color:var(--blue);
 }
 
 .nav-links a:hover::after{
@@ -215,10 +246,10 @@ img{
 }
 
 .nav-apply{
-    background:var(--primary)!important;
     color:white!important;
-    padding:12px 20px!important;
-    border-radius:30px;
+    background:var(--blue);
+    padding:12px 19px!important;
+    border-radius:50px;
 }
 
 .nav-apply::after{
@@ -227,161 +258,158 @@ img{
 
 .menu-btn{
     display:none;
-    background:none;
     border:0;
+    background:none;
     font-size:28px;
-    color:var(--dark);
+    color:var(--navy);
 }
 
-/* =========================
+
+/* =========================================================
    HERO
-========================= */
+   ========================================================= */
 
 .hero{
-    min-height:calc(100vh - 120px);
+    min-height:calc(100vh - 122px);
     position:relative;
     overflow:hidden;
-    background:
-        linear-gradient(90deg,rgba(2,45,65,.9),rgba(4,83,105,.55),rgba(0,0,0,.1)),
-        url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=85")
-        center/cover;
-    display:flex;
-    align-items:center;
-}
 
-.hero::after{
-    content:"";
-    position:absolute;
-    left:-5%;
-    right:-5%;
-    bottom:-75px;
-    height:160px;
-    background:white;
-    border-radius:50% 50% 0 0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(3,28,40,.94),
+            rgba(5,73,95,.72),
+            rgba(0,0,0,.12)
+        ),
+        url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2200&q=90")
+        center/cover;
 }
 
 .hero-content{
     width:90%;
-    max-width:1400px;
+    max-width:1350px;
     margin:auto;
-    color:white;
+    min-height:calc(100vh - 122px);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
     position:relative;
     z-index:2;
-    padding:90px 0;
+    color:white;
+    padding:80px 0 130px;
 }
 
-.hero-badge{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:9px 16px;
-    border-radius:30px;
-    background:rgba(255,255,255,.15);
-    border:1px solid rgba(255,255,255,.25);
-    backdrop-filter:blur(8px);
-    font-size:13px;
+.hero-tag{
+    width:max-content;
+    padding:9px 15px;
+    border-radius:50px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.2);
+    backdrop-filter:blur(10px);
+    font-size:12px;
+    letter-spacing:.4px;
     margin-bottom:25px;
 }
 
 .hero h1{
-    max-width:780px;
-    font-size:clamp(45px,7vw,86px);
+    max-width:850px;
+    font-size:clamp(48px,7vw,88px);
     line-height:.98;
-    margin-bottom:25px;
-    letter-spacing:-3px;
+    letter-spacing:-4px;
+    margin-bottom:27px;
 }
 
 .hero h1 span{
-    color:#80eff5;
+    color:#8cecf3;
 }
 
 .hero p{
     max-width:650px;
     font-size:18px;
-    line-height:1.8;
-    color:rgba(255,255,255,.9);
-    margin-bottom:35px;
+    line-height:1.85;
+    color:rgba(255,255,255,.88);
+    margin-bottom:34px;
 }
 
 .hero-buttons{
     display:flex;
-    gap:15px;
+    gap:14px;
     flex-wrap:wrap;
 }
 
 .btn{
     border:0;
-    padding:14px 24px;
     border-radius:50px;
-    font-weight:700;
-    transition:var(--transition);
+    padding:14px 23px;
     display:inline-flex;
     justify-content:center;
     align-items:center;
     gap:8px;
+    font-weight:750;
+    transition:.3s;
 }
 
 .btn-primary{
-    background:var(--accent);
+    background:var(--gold);
     color:#263642;
-    box-shadow:0 10px 25px rgba(245,196,81,.2);
 }
 
 .btn-primary:hover{
     transform:translateY(-3px);
-    box-shadow:0 15px 35px rgba(245,196,81,.35);
+    box-shadow:0 15px 35px rgba(245,198,91,.3);
 }
 
-.btn-outline{
+.btn-light{
     background:rgba(255,255,255,.1);
-    border:1px solid rgba(255,255,255,.45);
     color:white;
+    border:1px solid rgba(255,255,255,.35);
     backdrop-filter:blur(8px);
 }
 
-.btn-outline:hover{
+.btn-light:hover{
     background:white;
-    color:var(--dark);
+    color:var(--navy);
 }
 
-.wave{
+.hero-bottom{
     position:absolute;
-    bottom:0;
-    left:0;
-    width:100%;
-    height:100px;
+    bottom:-1px;
+    left:-5%;
+    width:110%;
+    height:110px;
     background:white;
-    clip-path:ellipse(75% 45% at 50% 100%);
-    z-index:3;
+    border-radius:50% 50% 0 0;
 }
 
-/* =========================
-   GENERAL
-========================= */
+
+/* =========================================================
+   GENERAL SECTIONS
+   ========================================================= */
 
 .section{
-    padding:100px 5%;
+    padding:105px 5%;
 }
 
 .section-header{
-    max-width:720px;
-    margin:0 auto 55px;
+    max-width:730px;
     text-align:center;
+    margin:0 auto 55px;
 }
 
-.section-tag{
-    color:var(--primary);
+.section-label{
+    color:var(--blue);
+    font-size:11px;
+    letter-spacing:2.5px;
     text-transform:uppercase;
-    font-size:12px;
-    font-weight:800;
-    letter-spacing:2px;
-    margin-bottom:10px;
+    font-weight:850;
+    margin-bottom:12px;
 }
 
 .section-header h2{
-    font-size:clamp(30px,4vw,48px);
-    color:var(--dark);
-    margin-bottom:15px;
+    color:var(--navy);
+    font-size:clamp(32px,4vw,50px);
+    line-height:1.1;
+    margin-bottom:17px;
 }
 
 .section-header p{
@@ -389,52 +417,40 @@ img{
     line-height:1.8;
 }
 
-/* =========================
-   STATS
-========================= */
 
-.stats{
-    margin-top:-10px;
-    position:relative;
-    z-index:10;
-}
+/* =========================================================
+   NO INFORMATION PLACEHOLDER
+   ========================================================= */
 
-.stats-grid{
-    max-width:1200px;
-    margin:auto;
-    background:white;
-    box-shadow:var(--shadow);
-    border-radius:25px;
-    padding:30px;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-}
-
-.stat{
+.empty-info{
+    border:1px dashed #cbdde2;
+    background:#f8fcfd;
+    border-radius:20px;
+    padding:35px;
     text-align:center;
-    padding:15px;
-    border-right:1px solid #e8eef0;
-}
-
-.stat:last-child{
-    border:0;
-}
-
-.stat-number{
-    font-size:34px;
-    color:var(--primary);
-    font-weight:900;
-}
-
-.stat-label{
     color:var(--muted);
-    font-size:13px;
-    margin-top:5px;
 }
 
-/* =========================
+.empty-info .empty-icon{
+    font-size:35px;
+    margin-bottom:10px;
+}
+
+.empty-info strong{
+    display:block;
+    color:var(--navy);
+    font-size:18px;
+    margin-bottom:7px;
+}
+
+
+/* =========================================================
    ABOUT
-========================= */
+   ========================================================= */
+
+.about{
+    background:white;
+}
 
 .about-grid{
     max-width:1250px;
@@ -451,140 +467,166 @@ img{
 
 .about-image img{
     width:100%;
-    height:540px;
+    height:530px;
     object-fit:cover;
     border-radius:30px;
     box-shadow:var(--shadow);
 }
 
-.about-card{
+.about-floating{
     position:absolute;
-    bottom:-25px;
     right:-25px;
+    bottom:-25px;
     background:white;
-    padding:25px;
     border-radius:20px;
+    padding:22px;
     box-shadow:var(--shadow);
-    max-width:230px;
+    max-width:240px;
 }
 
-.about-card strong{
+.about-floating strong{
     display:block;
-    color:var(--primary);
-    font-size:28px;
+    color:var(--blue);
+    font-size:20px;
+    margin-bottom:5px;
 }
 
-.about-text h2{
-    font-size:45px;
-    color:var(--dark);
+.about-floating span{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.5;
+}
+
+.about-content .section-label{
+    text-align:left;
+}
+
+.about-content h2{
+    color:var(--navy);
+    font-size:46px;
+    line-height:1.1;
     margin-bottom:20px;
 }
 
-.about-text p{
+.about-content p{
     color:var(--muted);
     line-height:1.9;
-    margin-bottom:20px;
+    margin-bottom:18px;
 }
 
-.check-list{
-    list-style:none;
+.values{
     display:grid;
-    gap:14px;
+    gap:13px;
+    margin-top:25px;
 }
 
-.check-list li{
+.value{
     display:flex;
-    gap:10px;
+    gap:12px;
     align-items:center;
-    font-weight:600;
+    font-weight:700;
+    color:#384d57;
 }
 
-.check-list li span{
-    width:25px;
-    height:25px;
+.value-icon{
+    width:27px;
+    height:27px;
     border-radius:50%;
-    background:#dff8f6;
-    color:#059b8b;
+    background:#e5f8fa;
+    color:#0697a4;
     display:flex;
     align-items:center;
     justify-content:center;
     font-size:13px;
 }
 
-/* =========================
-   WHY US
-========================= */
 
-.why-section{
-    background:var(--light);
+/* =========================================================
+   PRINCIPLES
+   ========================================================= */
+
+.principles{
+    background:var(--cream);
 }
 
-.cards{
+.card-grid{
     max-width:1250px;
     margin:auto;
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:25px;
+    gap:23px;
 }
 
-.feature-card{
+.info-card{
     background:white;
+    border:1px solid #edf2f4;
     border-radius:var(--radius);
-    padding:32px;
-    box-shadow:0 8px 30px rgba(0,0,0,.05);
-    transition:var(--transition);
-    border:1px solid #edf4f6;
+    padding:31px;
+    transition:.3s;
 }
 
-.feature-card:hover{
-    transform:translateY(-8px);
+.info-card:hover{
+    transform:translateY(-7px);
     box-shadow:var(--shadow);
 }
 
-.feature-icon{
-    width:60px;
-    height:60px;
+.info-icon{
+    width:58px;
+    height:58px;
     border-radius:18px;
-    background:#e6f8fb;
-    color:var(--primary);
+    background:#e8f9fb;
+    color:var(--blue);
     display:flex;
-    justify-content:center;
     align-items:center;
-    font-size:27px;
-    margin-bottom:20px;
+    justify-content:center;
+    font-size:25px;
+    margin-bottom:21px;
 }
 
-.feature-card h3{
-    color:var(--dark);
+.info-card h3{
+    color:var(--navy);
+    font-size:19px;
     margin-bottom:10px;
 }
 
-.feature-card p{
+.info-card p{
     color:var(--muted);
-    line-height:1.7;
+    line-height:1.75;
+    font-size:14px;
 }
 
-/* =========================
+
+/* =========================================================
    ACADEMICS
-========================= */
+   ========================================================= */
+
+.academics{
+    background:white;
+}
 
 .academic-grid{
     max-width:1250px;
     margin:auto;
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:25px;
+    gap:24px;
 }
 
 .academic-card{
     border-radius:25px;
     overflow:hidden;
     background:white;
-    box-shadow:0 10px 35px rgba(0,0,0,.08);
+    border:1px solid var(--border);
+    transition:.3s;
+}
+
+.academic-card:hover{
+    transform:translateY(-7px);
+    box-shadow:var(--shadow);
 }
 
 .academic-image{
-    height:210px;
+    height:220px;
     overflow:hidden;
 }
 
@@ -595,148 +637,117 @@ img{
     transition:.5s;
 }
 
-.academic-card:hover img{
-    transform:scale(1.08);
+.academic-card:hover .academic-image img{
+    transform:scale(1.06);
 }
 
-.academic-content{
+.academic-body{
     padding:25px;
 }
 
-.academic-content h3{
-    color:var(--dark);
-    margin-bottom:10px;
+.academic-body h3{
+    color:var(--navy);
+    margin-bottom:9px;
 }
 
-.academic-content p{
+.academic-body p{
     color:var(--muted);
     line-height:1.7;
+    font-size:14px;
 }
 
-/* =========================
-   FACILITIES
-========================= */
 
-.facilities{
-    background:#062f42;
+/* =========================================================
+   ADMISSIONS
+   ========================================================= */
+
+.admissions{
     color:white;
+
+    background:
+        linear-gradient(
+            105deg,
+            rgba(3,38,53,.95),
+            rgba(7,119,145,.9)
+        ),
+        url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=2000&q=85")
+        center/cover;
 }
 
-.facilities .section-header h2{
-    color:white;
-}
-
-.facilities .section-header p{
-    color:#bdd6de;
-}
-
-.facility-grid{
+.admission-wrap{
     max-width:1200px;
     margin:auto;
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
-}
-
-.facility{
-    min-height:180px;
-    border-radius:22px;
-    padding:25px;
-    background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.03));
-    border:1px solid rgba(255,255,255,.1);
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-end;
-}
-
-.facility-icon{
-    font-size:32px;
-    margin-bottom:auto;
-}
-
-.facility h3{
-    margin-bottom:5px;
-}
-
-.facility p{
-    color:#b7d1da;
-    font-size:13px;
-}
-
-/* =========================
-   ADMISSIONS
-========================= */
-
-.admission{
-    background:
-        linear-gradient(100deg,rgba(5,77,102,.93),rgba(10,148,164,.84)),
-        url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1800&q=80")
-        center/cover;
-    color:white;
-}
-
-.admission-box{
-    max-width:1100px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:1fr .8fr;
-    gap:60px;
+    grid-template-columns:1.1fr .9fr;
+    gap:70px;
     align-items:center;
 }
 
-.admission h2{
-    font-size:48px;
-    margin-bottom:20px;
+.admissions h2{
+    font-size:50px;
+    line-height:1.05;
+    margin:10px 0 20px;
 }
 
-.admission p{
+.admissions p{
+    color:#d7edf1;
     line-height:1.8;
-    color:#e4f7fa;
 }
 
-.admission-steps{
+.admission-list{
     display:grid;
-    gap:15px;
+    gap:14px;
 }
 
-.step{
-    background:rgba(255,255,255,.1);
+.admission-step{
     padding:20px;
     border-radius:18px;
-    border:1px solid rgba(255,255,255,.15);
+    background:rgba(255,255,255,.09);
+    border:1px solid rgba(255,255,255,.12);
 }
 
-.step strong{
+.admission-step strong{
     display:block;
-    margin-bottom:5px;
+    margin-bottom:6px;
 }
 
-/* =========================
+.admission-step span{
+    color:#c5e0e5;
+    font-size:13px;
+}
+
+
+/* =========================================================
    TEACHERS
-========================= */
+   ========================================================= */
+
+.teachers{
+    background:white;
+}
 
 .teacher-grid{
     max-width:1250px;
     margin:auto;
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:25px;
+    gap:22px;
 }
 
 .teacher-card{
     background:white;
-    border-radius:25px;
+    border:1px solid var(--border);
+    border-radius:23px;
     overflow:hidden;
-    box-shadow:0 8px 30px rgba(0,0,0,.06);
 }
 
 .teacher-photo{
-    height:270px;
-    background:#e8f4f7;
+    height:260px;
+    background:#eef7f9;
     display:flex;
-    justify-content:center;
     align-items:center;
-    overflow:hidden;
+    justify-content:center;
+    color:#8da2aa;
+    font-size:50px;
 }
 
 .teacher-photo img{
@@ -750,29 +761,74 @@ img{
 }
 
 .teacher-info h3{
-    color:var(--dark);
+    color:var(--navy);
     margin-bottom:5px;
 }
 
 .teacher-role{
-    color:var(--primary);
-    font-size:13px;
-    font-weight:700;
+    color:var(--blue);
+    font-size:12px;
+    font-weight:800;
 }
 
 .teacher-info p{
     color:var(--muted);
-    margin-top:10px;
     font-size:13px;
     line-height:1.6;
+    margin-top:10px;
 }
 
-/* =========================
-   REVIEWS
-========================= */
 
-.reviews{
-    background:var(--light);
+/* =========================================================
+   ANNOUNCEMENTS
+   ========================================================= */
+
+.announcements{
+    background:var(--cream);
+}
+
+.news-grid{
+    max-width:1150px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.news-card{
+    background:white;
+    padding:26px;
+    border-radius:21px;
+    border:1px solid var(--border);
+}
+
+.news-date{
+    color:var(--blue);
+    font-size:11px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    margin-bottom:12px;
+}
+
+.news-card h3{
+    color:var(--navy);
+    margin-bottom:10px;
+}
+
+.news-card p{
+    color:var(--muted);
+    line-height:1.7;
+    font-size:14px;
+}
+
+
+/* =========================================================
+   PARENTS
+   ========================================================= */
+
+.parents{
+    background:white;
 }
 
 .review-grid{
@@ -780,138 +836,92 @@ img{
     margin:auto;
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:25px;
+    gap:23px;
 }
 
-.review{
+.review-card{
+    padding:28px;
     background:white;
+    border:1px solid var(--border);
     border-radius:22px;
-    padding:30px;
-    box-shadow:0 8px 25px rgba(0,0,0,.05);
 }
 
-.stars{
-    color:#f4b928;
+.review-stars{
+    color:#e7b538;
     letter-spacing:3px;
     margin-bottom:15px;
 }
 
-.review p{
+.review-card p{
     color:var(--muted);
     line-height:1.8;
-    margin-bottom:20px;
+    font-size:14px;
+    margin-bottom:18px;
 }
 
 .review-author{
-    display:flex;
-    gap:12px;
-    align-items:center;
-}
-
-.author-avatar{
-    width:45px;
-    height:45px;
-    border-radius:50%;
-    background:linear-gradient(135deg,var(--primary),var(--secondary));
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
     font-weight:800;
+    color:var(--navy);
 }
 
-/* =========================
-   NEWS
-========================= */
 
-.news-grid{
-    max-width:1200px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:25px;
-}
-
-.news-card{
-    background:white;
-    border:1px solid #e9f0f2;
-    border-radius:22px;
-    padding:25px;
-}
-
-.news-date{
-    font-size:12px;
-    color:var(--primary);
-    font-weight:800;
-    margin-bottom:12px;
-}
-
-.news-card h3{
-    color:var(--dark);
-    margin-bottom:10px;
-}
-
-.news-card p{
-    color:var(--muted);
-    line-height:1.7;
-}
-
-/* =========================
+/* =========================================================
    CONTACT
-========================= */
+   ========================================================= */
 
 .contact{
-    background:#f7fbfc;
+    background:#f5fafb;
 }
 
 .contact-grid{
     max-width:1200px;
     margin:auto;
     display:grid;
-    grid-template-columns:.8fr 1.2fr;
-    gap:50px;
+    grid-template-columns:.75fr 1.25fr;
+    gap:45px;
 }
 
-.contact-info{
+.contact-details{
     display:grid;
-    gap:18px;
+    gap:15px;
 }
 
-.contact-card{
+.contact-box{
     background:white;
     padding:22px;
     border-radius:18px;
-    box-shadow:0 7px 25px rgba(0,0,0,.04);
+    border:1px solid var(--border);
 }
 
-.contact-card strong{
+.contact-box strong{
     display:block;
-    color:var(--dark);
-    margin-bottom:6px;
+    color:var(--navy);
+    margin-bottom:7px;
 }
 
-.contact-card span{
+.contact-box span{
     color:var(--muted);
     font-size:14px;
+    line-height:1.5;
 }
 
-.form{
+.contact-form{
     background:white;
-    padding:35px;
+    padding:33px;
     border-radius:25px;
     box-shadow:var(--shadow);
 }
 
-.form h3{
-    color:var(--dark);
-    font-size:27px;
-    margin-bottom:25px;
+.contact-form h3{
+    color:var(--navy);
+    font-size:26px;
+    margin-bottom:22px;
 }
 
 .form-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:17px;
+    gap:15px;
 }
 
 .form-group{
@@ -925,29 +935,19 @@ img{
 }
 
 .form-group label{
-    font-size:13px;
-    font-weight:700;
-    color:#40545f;
+    color:#42555e;
+    font-size:12px;
+    font-weight:750;
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select{
-    width:100%;
     border:1px solid #dce8eb;
-    background:#fbfdfe;
-    border-radius:12px;
-    padding:13px 14px;
+    border-radius:11px;
+    padding:13px;
     outline:none;
-    color:var(--text);
-    transition:.2s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus{
-    border-color:var(--secondary);
-    box-shadow:0 0 0 3px rgba(18,184,201,.1);
+    background:#fcfeff;
 }
 
 .form-group textarea{
@@ -955,16 +955,20 @@ img{
     resize:vertical;
 }
 
-.form-submit{
-    margin-top:20px;
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+    border-color:var(--cyan);
+    box-shadow:0 0 0 3px rgba(22,197,211,.1);
 }
 
-/* =========================
+
+/* =========================================================
    FOOTER
-========================= */
+   ========================================================= */
 
 footer{
-    background:#052737;
+    background:var(--deep);
     color:white;
     padding:65px 5% 25px;
 }
@@ -973,15 +977,15 @@ footer{
     max-width:1250px;
     margin:auto;
     display:grid;
-    grid-template-columns:1.5fr 1fr 1fr 1fr;
-    gap:40px;
+    grid-template-columns:1.5fr 1fr 1fr;
+    gap:50px;
 }
 
 .footer-brand p{
-    color:#a9c3cc;
+    color:#9bb8c1;
     line-height:1.8;
-    margin-top:15px;
     max-width:350px;
+    margin-top:16px;
 }
 
 .footer-column h4{
@@ -990,9 +994,9 @@ footer{
 
 .footer-column a{
     display:block;
-    color:#a9c3cc;
+    color:#9bb8c1;
+    font-size:13px;
     margin-bottom:11px;
-    font-size:14px;
 }
 
 .footer-column a:hover{
@@ -1006,25 +1010,25 @@ footer{
     border-top:1px solid rgba(255,255,255,.1);
     display:flex;
     justify-content:space-between;
-    gap:15px;
-    color:#89a9b4;
-    font-size:12px;
+    color:#7696a1;
+    font-size:11px;
 }
 
-/* =========================
+
+/* =========================================================
    MODALS
-========================= */
+   ========================================================= */
 
 .modal{
     position:fixed;
     inset:0;
-    background:rgba(2,26,36,.7);
+    background:rgba(1,22,31,.72);
     backdrop-filter:blur(8px);
     display:none;
-    justify-content:center;
     align-items:center;
-    z-index:10000;
+    justify-content:center;
     padding:20px;
+    z-index:15000;
 }
 
 .modal.show{
@@ -1033,53 +1037,87 @@ footer{
 
 .modal-box{
     width:100%;
-    max-width:650px;
+    max-width:620px;
     max-height:90vh;
     overflow:auto;
     background:white;
     border-radius:25px;
-    padding:35px;
+    padding:34px;
     position:relative;
     animation:modalIn .3s ease;
 }
 
 @keyframes modalIn{
-    from{opacity:0;transform:translateY(20px)}
-    to{opacity:1;transform:none}
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
 }
 
 .modal-close{
     position:absolute;
-    top:18px;
-    right:20px;
+    top:15px;
+    right:17px;
     width:35px;
     height:35px;
     border:0;
-    background:#eef5f7;
     border-radius:50%;
+    background:#edf5f7;
     font-size:20px;
 }
 
 .modal-box h2{
-    color:var(--dark);
-    margin-bottom:10px;
+    color:var(--navy);
+    margin-bottom:9px;
 }
 
 .modal-box > p{
     color:var(--muted);
-    margin-bottom:25px;
     line-height:1.6;
+    margin-bottom:23px;
 }
 
-/* =========================
+.modal-form{
+    display:grid;
+    gap:14px;
+}
+
+.modal-form input,
+.modal-form textarea,
+.modal-form select{
+    width:100%;
+    border:1px solid #dce8eb;
+    border-radius:11px;
+    padding:13px;
+    outline:none;
+}
+
+.modal-form textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+.two{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:13px;
+}
+
+
+/* =========================================================
    ADMIN
-========================= */
+   ========================================================= */
 
 .admin-overlay{
     position:fixed;
     inset:0;
-    background:#071e2b;
-    z-index:20000;
+    z-index:25000;
+    background:#f3f7f9;
     display:none;
     overflow:auto;
 }
@@ -1095,58 +1133,73 @@ footer{
 }
 
 .admin-sidebar{
-    background:#041a25;
+    background:#041c29;
     color:white;
-    padding:25px 15px;
+    padding:25px 14px;
 }
 
 .admin-logo{
     padding:10px;
-    margin-bottom:30px;
+    margin-bottom:25px;
 }
 
 .admin-logo h2{
-    font-size:21px;
+    font-size:20px;
 }
 
 .admin-logo span{
-    color:#68dce8;
-    font-size:11px;
+    color:#66dce6;
+    font-size:9px;
+    letter-spacing:2px;
 }
 
 .admin-nav button{
     width:100%;
-    text-align:left;
     border:0;
-    background:transparent;
-    color:#a9c2cb;
-    padding:13px 15px;
+    background:none;
+    color:#9fb9c2;
+    text-align:left;
+    padding:13px 14px;
     border-radius:10px;
-    margin-bottom:5px;
+    margin-bottom:4px;
 }
 
 .admin-nav button:hover,
 .admin-nav button.active{
-    background:#0a5068;
     color:white;
+    background:#07516a;
 }
 
 .admin-main{
-    background:#f4f8fa;
     min-width:0;
 }
 
-.admin-top{
+.admin-header{
     background:white;
-    padding:20px 30px;
+    min-height:75px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    box-shadow:0 3px 15px rgba(0,0,0,.05);
+    padding:15px 30px;
+    box-shadow:0 4px 20px rgba(0,0,0,.05);
 }
 
-.admin-top h1{
-    color:var(--dark);
+.admin-header h1{
+    color:var(--navy);
+    font-size:23px;
+}
+
+.admin-header small{
+    color:var(--muted);
+}
+
+.exit-admin{
+    border:0;
+    background:#ffe9e9;
+    color:#b33c3c;
+    padding:10px 15px;
+    border-radius:10px;
+    font-weight:700;
 }
 
 .admin-content{
@@ -1165,12 +1218,12 @@ footer{
     background:white;
     border-radius:18px;
     padding:25px;
-    box-shadow:0 5px 20px rgba(0,0,0,.04);
     margin-bottom:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,.04);
 }
 
 .admin-card h3{
-    color:var(--dark);
+    color:var(--navy);
     margin-bottom:20px;
 }
 
@@ -1180,32 +1233,59 @@ footer{
     gap:18px;
 }
 
-.dashboard-stat{
+.dashboard-card{
     background:white;
-    padding:25px;
-    border-radius:18px;
+    border-radius:17px;
+    padding:23px;
     box-shadow:0 5px 20px rgba(0,0,0,.04);
 }
 
-.dashboard-stat small{
+.dashboard-card span{
     color:var(--muted);
+    font-size:12px;
 }
 
-.dashboard-stat strong{
+.dashboard-card strong{
     display:block;
-    font-size:30px;
-    color:var(--primary);
-    margin-top:8px;
+    color:var(--blue);
+    font-size:29px;
+    margin-top:7px;
+}
+
+.admin-form{
+    display:grid;
+    gap:13px;
+}
+
+.admin-form input,
+.admin-form textarea,
+.admin-form select{
+    width:100%;
+    padding:12px;
+    border:1px solid #dce7ea;
+    border-radius:10px;
+    outline:none;
+}
+
+.admin-form textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+.admin-two{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:13px;
 }
 
 .admin-list{
     display:grid;
-    gap:12px;
+    gap:11px;
 }
 
 .admin-item{
-    border:1px solid #e5eef0;
-    border-radius:14px;
+    border:1px solid var(--border);
+    border-radius:13px;
     padding:15px;
     display:flex;
     justify-content:space-between;
@@ -1213,88 +1293,55 @@ footer{
     gap:15px;
 }
 
-.admin-item-info strong{
-    color:var(--dark);
+.admin-item strong{
     display:block;
-    margin-bottom:5px;
+    color:var(--navy);
+    margin-bottom:4px;
 }
 
-.admin-item-info span{
+.admin-item span{
     color:var(--muted);
-    font-size:13px;
-}
-
-.admin-actions{
-    display:flex;
-    gap:7px;
-}
-
-.small-btn{
-    border:0;
-    padding:8px 12px;
-    border-radius:8px;
-    background:#e8f3f5;
-    color:var(--primary);
-    font-weight:700;
     font-size:12px;
+    line-height:1.6;
 }
 
-.small-btn.delete{
-    background:#ffe9e9;
-    color:#c43d3d;
-}
-
-.admin-form{
-    display:grid;
-    gap:15px;
-}
-
-.admin-form input,
-.admin-form textarea,
-.admin-form select{
-    padding:12px;
-    border:1px solid #dce7ea;
-    border-radius:10px;
-    outline:none;
-    width:100%;
-}
-
-.admin-form textarea{
-    min-height:110px;
-}
-
-.admin-two{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
-}
-
-.admin-close{
-    background:#ffe8e8;
-    color:#b72d2d;
+.delete-btn{
     border:0;
-    padding:10px 16px;
-    border-radius:10px;
+    background:#ffe9e9;
+    color:#b83232;
+    border-radius:8px;
+    padding:8px 11px;
+    font-size:11px;
     font-weight:700;
 }
 
-/* =========================
+.admin-note{
+    background:#edf9fb;
+    color:#47707b;
+    padding:15px;
+    border-radius:12px;
+    font-size:13px;
+    line-height:1.6;
+}
+
+
+/* =========================================================
    TOAST
-========================= */
+   ========================================================= */
 
 .toast{
     position:fixed;
-    right:25px;
-    bottom:25px;
-    background:#082d3e;
+    right:22px;
+    bottom:22px;
+    z-index:30000;
+    background:var(--navy);
     color:white;
-    padding:15px 20px;
+    padding:14px 18px;
     border-radius:12px;
     box-shadow:var(--shadow);
-    z-index:30000;
     transform:translateY(100px);
     opacity:0;
-    transition:.35s;
+    transition:.3s;
 }
 
 .toast.show{
@@ -1302,21 +1349,22 @@ footer{
     opacity:1;
 }
 
-/* =========================
-   BACK TO TOP
-========================= */
+
+/* =========================================================
+   BACK TOP
+   ========================================================= */
 
 .back-top{
     position:fixed;
     right:20px;
     bottom:20px;
-    width:45px;
-    height:45px;
+    width:44px;
+    height:44px;
     border:0;
     border-radius:50%;
-    background:var(--primary);
+    background:var(--blue);
     color:white;
-    z-index:1000;
+    z-index:500;
     opacity:0;
     visibility:hidden;
     transition:.3s;
@@ -1327,11 +1375,13 @@ footer{
     visibility:visible;
 }
 
-/* =========================
+
+/* =========================================================
    RESPONSIVE
-========================= */
+   ========================================================= */
 
 @media(max-width:1050px){
+
     .nav-links{
         gap:15px;
     }
@@ -1340,16 +1390,14 @@ footer{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .facility-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
     .dashboard-grid{
         grid-template-columns:repeat(2,1fr);
     }
+
 }
 
 @media(max-width:850px){
+
     .topbar{
         display:none;
     }
@@ -1362,14 +1410,13 @@ footer{
         position:absolute;
         left:0;
         right:0;
-        top:78px;
+        top:82px;
         background:white;
-        padding:20px;
+        display:none;
         flex-direction:column;
         align-items:stretch;
-        gap:0;
-        display:none;
-        box-shadow:0 15px 25px rgba(0,0,0,.1);
+        padding:15px;
+        box-shadow:0 15px 25px rgba(0,0,0,.08);
     }
 
     .nav-links.open{
@@ -1377,7 +1424,7 @@ footer{
     }
 
     .nav-links a{
-        padding:14px;
+        padding:13px;
     }
 
     .nav-links a::after{
@@ -1385,12 +1432,12 @@ footer{
     }
 
     .about-grid,
-    .admission-box,
+    .admission-wrap,
     .contact-grid{
         grid-template-columns:1fr;
     }
 
-    .cards,
+    .card-grid,
     .academic-grid,
     .review-grid,
     .news-grid{
@@ -1408,11 +1455,13 @@ footer{
     .admin-sidebar{
         display:none;
     }
+
 }
 
 @media(max-width:600px){
+
     .section{
-        padding:70px 5%;
+        padding:75px 5%;
     }
 
     .hero h1{
@@ -1424,24 +1473,26 @@ footer{
         font-size:15px;
     }
 
-    .stats-grid{
-        grid-template-columns:1fr 1fr;
+    .about-image img{
+        height:390px;
     }
 
-    .stat:nth-child(2){
-        border:0;
+    .about-content h2,
+    .admissions h2{
+        font-size:36px;
     }
 
-    .cards,
+    .card-grid,
     .academic-grid,
     .teacher-grid,
     .review-grid,
     .news-grid,
-    .facility-grid{
+    .footer-grid{
         grid-template-columns:1fr;
     }
 
     .form-grid,
+    .two,
     .admin-two{
         grid-template-columns:1fr;
     }
@@ -1450,205 +1501,259 @@ footer{
         grid-column:auto;
     }
 
-    .about-image img{
-        height:400px;
-    }
-
-    .admission h2{
-        font-size:36px;
-    }
-
-    .footer-grid{
-        grid-template-columns:1fr;
-    }
-
-    .footer-bottom{
-        flex-direction:column;
+    .dashboard-grid{
+        grid-template-columns:1fr 1fr;
     }
 
     .admin-content{
         padding:15px;
     }
 
-    .admin-top{
+    .admin-header{
         padding:15px;
     }
+
+    .admin-item{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .footer-bottom{
+        flex-direction:column;
+        gap:10px;
+    }
+
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- =========================
+
+<!-- =========================================================
      LOADER
-========================= -->
+     ========================================================= -->
 
 <div class="loader" id="loader">
-    <div class="loader-content">
-        <div class="loader-logo"></div>
-        <h2>Bright Beginning</h2>
-        <p>Preparing your journey...</p>
+
+    <div class="loader-inner">
+
+        <div class="loader-circle"></div>
+
+        <h2>Bright Beggining</h2>
+
+        <p>Opening a world of possibilities...</p>
+
     </div>
+
 </div>
 
-<!-- =========================
+
+<!-- =========================================================
      TOP BAR
-========================= -->
+     ========================================================= -->
 
 <div class="topbar">
+
     <div class="topbar-left">
-        <span id="topEmail">📧 info@brightbeginning.edu</span>
-        <span id="topPhone">📞 +92 300 0000000</span>
+
+        <span id="topEmail"></span>
+
+        <span id="topPhone"></span>
+
     </div>
 
     <div class="topbar-right">
-        <span>Admissions Open</span>
-        <span>2026–27</span>
+
+        <span>Welcome to Bright Beggining</span>
+
     </div>
+
 </div>
 
-<!-- =========================
-     NAVBAR
-========================= -->
+
+<!-- =========================================================
+     NAVIGATION
+     ========================================================= -->
 
 <nav class="navbar">
+
     <div class="nav-container">
 
         <a href="#home" class="brand">
-            <div class="logo">BB</div>
-            <div class="brand-text">
-                <h2 id="navSchoolName">Bright Beginning</h2>
-                <span>SCHOOL</span>
+
+            <div class="logo">
+                BB
             </div>
+
+            <div class="brand-text">
+
+                <h2>Bright Beggining</h2>
+
+                <span>SCHOOL</span>
+
+            </div>
+
         </a>
 
-        <button class="menu-btn" id="menuBtn">☰</button>
+
+        <button class="menu-btn" id="menuBtn">
+            ☰
+        </button>
+
 
         <div class="nav-links" id="navLinks">
+
             <a href="#home">Home</a>
+
             <a href="#about">About</a>
+
             <a href="#academics">Academics</a>
+
             <a href="#admissions">Admissions</a>
+
             <a href="#teachers">Teachers</a>
+
             <a href="#parents">Parents</a>
+
             <a href="#contact">Contact</a>
-            <a href="#admissions" class="nav-apply">Apply Now</a>
+
+            <a href="#admissions" class="nav-apply">
+                Apply Now
+            </a>
+
         </div>
 
     </div>
+
 </nav>
 
-<!-- =========================
+
+<!-- =========================================================
      HERO
-========================= -->
+     ========================================================= -->
 
 <section class="hero" id="home">
 
     <div class="hero-content">
 
-        <div class="hero-badge">
-            ✨ A place to learn, grow & shine
+        <div class="hero-tag">
+            ✦ A place to learn, discover and grow
         </div>
+
 
         <h1>
-            Where Every Beginning
-            Becomes a <span>Bright Future.</span>
+            Begin Today.
+            <span>Become Tomorrow.</span>
         </h1>
 
-        <p id="heroDescription">
-            Welcome to Bright Beginning — a nurturing learning community
-            dedicated to helping every student discover their potential,
-            build confidence and prepare for a brighter future.
+
+        <p>
+            Welcome to Bright Beggining — a modern educational
+            environment designed to encourage curiosity, confidence,
+            knowledge and personal growth.
         </p>
 
+
         <div class="hero-buttons">
-            <a href="#admissions" class="btn btn-primary">
-                Start Your Journey →
+
+            <a href="#about" class="btn btn-primary">
+                Explore Our School →
             </a>
 
-            <a href="#about" class="btn btn-outline">
-                Discover Our School
+            <a href="#contact" class="btn btn-light">
+                Contact Us
             </a>
+
         </div>
 
     </div>
 
-    <div class="wave"></div>
+
+    <div class="hero-bottom"></div>
 
 </section>
 
-<!-- =========================
-     STATS
-========================= -->
 
-<section class="stats">
-    <div class="stats-grid">
-
-        <div class="stat">
-            <div class="stat-number" id="statStudents">—</div>
-            <div class="stat-label">Students</div>
-        </div>
-
-        <div class="stat">
-            <div class="stat-number" id="statTeachers">—</div>
-            <div class="stat-label">Teachers</div>
-        </div>
-
-        <div class="stat">
-            <div class="stat-number" id="statClasses">—</div>
-            <div class="stat-label">Classes</div>
-        </div>
-
-        <div class="stat">
-            <div class="stat-number" id="statYears">—</div>
-            <div class="stat-label">Years of Excellence</div>
-        </div>
-
-    </div>
-</section>
-
-<!-- =========================
+<!-- =========================================================
      ABOUT
-========================= -->
+     ========================================================= -->
 
-<section class="section" id="about">
+<section class="section about" id="about">
 
     <div class="about-grid">
 
+
         <div class="about-image">
-            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=85"
-                 alt="Students learning">
 
-            <div class="about-card">
-                <strong>Bright</strong>
-                <span>Learning starts with a bright beginning.</span>
+            <img
+                src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=90"
+                alt="Students learning"
+            >
+
+            <div class="about-floating">
+
+                <strong>A Bright Start</strong>
+
+                <span>
+                    Every student's journey begins with
+                    an opportunity to learn and grow.
+                </span>
+
             </div>
+
         </div>
 
-        <div class="about-text">
 
-            <div class="section-tag">About Bright Beginning</div>
+        <div class="about-content">
 
-            <h2>Education that goes beyond the classroom.</h2>
+            <div class="section-label">
+                About Bright Beggining
+            </div>
 
-            <p id="aboutText">
-                Bright Beginning is built around one simple belief:
-                every child deserves an environment where they feel safe,
-                respected, encouraged and inspired to learn.
+            <h2>
+                Education should inspire possibility.
+            </h2>
+
+            <p>
+                Bright Beggining is built around a simple idea:
+                education should help students become confident,
+                curious and capable individuals.
             </p>
 
             <p>
-                Our approach combines strong academics with character
-                development, creativity, teamwork and confidence.
+                Our website is designed so that the school can
+                add its own real information, achievements,
+                teachers, facilities and announcements as they
+                become available.
             </p>
 
-            <ul class="check-list">
-                <li><span>✓</span> Student-focused learning</li>
-                <li><span>✓</span> Safe and respectful environment</li>
-                <li><span>✓</span> Strong academic foundation</li>
-                <li><span>✓</span> Equality and inclusion</li>
-                <li><span>✓</span> Parent-school partnership</li>
-            </ul>
+
+            <div class="values">
+
+                <div class="value">
+                    <div class="value-icon">✓</div>
+                    Respect for every learner
+                </div>
+
+                <div class="value">
+                    <div class="value-icon">✓</div>
+                    Encouragement and confidence
+                </div>
+
+                <div class="value">
+                    <div class="value-icon">✓</div>
+                    Learning through curiosity
+                </div>
+
+                <div class="value">
+                    <div class="value-icon">✓</div>
+                    A positive school community
+                </div>
+
+            </div>
 
         </div>
 
@@ -1656,255 +1761,323 @@ footer{
 
 </section>
 
-<!-- =========================
-     WHY US
-========================= -->
 
-<section class="section why-section">
+<!-- =========================================================
+     PRINCIPLES
+     ========================================================= -->
+
+<section class="section principles">
 
     <div class="section-header">
-        <div class="section-tag">Why Choose Us</div>
-        <h2>A school built around students.</h2>
+
+        <div class="section-label">
+            Our Approach
+        </div>
+
+        <h2>
+            What Bright Beggining stands for.
+        </h2>
+
         <p>
-            We focus on creating a learning environment where students
-            can feel confident, curious and ready for their future.
+            These are the principles behind the school's
+            presentation. Real school policies and details
+            can be added from the owner dashboard.
         </p>
+
     </div>
 
-    <div class="cards">
 
-        <div class="feature-card">
-            <div class="feature-icon">🛡️</div>
-            <h3>Student Safety</h3>
+    <div class="card-grid">
+
+        <div class="info-card">
+
+            <div class="info-icon">🛡️</div>
+
+            <h3>
+                A Safe Environment
+            </h3>
+
             <p>
-                We work to maintain a safe, respectful and caring
-                environment for every student.
+                A school environment where students can
+                feel comfortable, respected and supported.
             </p>
+
         </div>
 
-        <div class="feature-card">
-            <div class="feature-icon">⚖️</div>
-            <h3>Equality for Everyone</h3>
+
+        <div class="info-card">
+
+            <div class="info-icon">🧠</div>
+
+            <h3>
+                Meaningful Learning
+            </h3>
+
             <p>
-                Every student deserves respect, opportunity and
-                encouragement regardless of background.
+                Learning should encourage understanding,
+                questions, creativity and independent thinking.
             </p>
+
         </div>
 
-        <div class="feature-card">
-            <div class="feature-icon">🧠</div>
-            <h3>Smart Learning</h3>
+
+        <div class="info-card">
+
+            <div class="info-icon">⚖️</div>
+
+            <h3>
+                Equality
+            </h3>
+
             <p>
-                Learning is designed to build understanding, curiosity
-                and useful real-world skills.
+                Every learner deserves respect, opportunity
+                and encouragement.
             </p>
+
         </div>
 
-        <div class="feature-card">
-            <div class="feature-icon">🎨</div>
-            <h3>Creativity</h3>
+
+        <div class="info-card">
+
+            <div class="info-icon">🎨</div>
+
+            <h3>
+                Creativity
+            </h3>
+
             <p>
-                Students get opportunities to explore creativity,
-                ideas and their own interests.
+                Students should have opportunities to explore
+                ideas and express themselves.
             </p>
+
         </div>
 
-        <div class="feature-card">
-            <div class="feature-icon">🏆</div>
-            <h3>Character Building</h3>
+
+        <div class="info-card">
+
+            <div class="info-icon">🤝</div>
+
+            <h3>
+                Community
+            </h3>
+
             <p>
-                We encourage responsibility, teamwork, confidence
-                and positive leadership.
+                A strong relationship between students,
+                teachers and families supports learning.
             </p>
+
         </div>
 
-        <div class="feature-card">
-            <div class="feature-icon">🤝</div>
-            <h3>Parent Partnership</h3>
+
+        <div class="info-card">
+
+            <div class="info-icon">🌱</div>
+
+            <h3>
+                Growth
+            </h3>
+
             <p>
-                Families and teachers work together to support
-                each student's development.
+                Education is a journey where every student
+                can continue developing their abilities.
             </p>
+
         </div>
 
     </div>
 
 </section>
 
-<!-- =========================
+
+<!-- =========================================================
      ACADEMICS
-========================= -->
+     ========================================================= -->
 
-<section class="section" id="academics">
+<section class="section academics" id="academics">
 
     <div class="section-header">
-        <div class="section-tag">Academics</div>
-        <h2>Learning for every stage.</h2>
+
+        <div class="section-label">
+            Academics
+        </div>
+
+        <h2>
+            A journey of learning.
+        </h2>
+
         <p>
-            Our academic journey is designed to build strong foundations
-            and gradually develop independent thinkers.
+            The school can later customize these sections
+            with its actual classes, curriculum and subjects.
         </p>
+
     </div>
+
 
     <div class="academic-grid">
 
         <div class="academic-card">
+
             <div class="academic-image">
-                <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=900&q=80"
-                     alt="Early years">
+
+                <img
+                    src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=1000&q=85"
+                    alt="Early learning"
+                >
+
             </div>
-            <div class="academic-content">
-                <h3>Early Years</h3>
+
+            <div class="academic-body">
+
+                <h3>
+                    Early Learning
+                </h3>
+
                 <p>
-                    A caring environment where children develop confidence,
-                    communication and curiosity through engaging activities.
+                    A foundation for curiosity, communication,
+                    confidence and discovery.
                 </p>
+
             </div>
+
         </div>
 
-        <div class="academic-card">
-            <div class="academic-image">
-                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=80"
-                     alt="Primary school">
-            </div>
-            <div class="academic-content">
-                <h3>Primary School</h3>
-                <p>
-                    Strong foundations in language, mathematics, science,
-                    technology and social development.
-                </p>
-            </div>
-        </div>
 
         <div class="academic-card">
+
             <div class="academic-image">
-                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=900&q=80"
-                     alt="Middle school">
+
+                <img
+                    src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1000&q=85"
+                    alt="Primary learning"
+                >
+
             </div>
-            <div class="academic-content">
-                <h3>Middle School</h3>
+
+            <div class="academic-body">
+
+                <h3>
+                    Primary Learning
+                </h3>
+
                 <p>
-                    Students develop deeper subject knowledge, critical
-                    thinking and preparation for future academic goals.
+                    Building strong foundations in essential
+                    academic and personal skills.
                 </p>
+
             </div>
+
+        </div>
+
+
+        <div class="academic-card">
+
+            <div class="academic-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=85"
+                    alt="Secondary learning"
+                >
+
+            </div>
+
+            <div class="academic-body">
+
+                <h3>
+                    Secondary Learning
+                </h3>
+
+                <p>
+                    Developing deeper understanding, critical
+                    thinking and preparation for future goals.
+                </p>
+
+            </div>
+
         </div>
 
     </div>
 
 </section>
 
-<!-- =========================
-     FACILITIES
-========================= -->
 
-<section class="section facilities">
-
-    <div class="section-header">
-        <div class="section-tag">Our Environment</div>
-        <h2>More than just classrooms.</h2>
-        <p>
-            Add your school's actual facilities through the admin panel.
-        </p>
-    </div>
-
-    <div class="facility-grid">
-
-        <div class="facility">
-            <div class="facility-icon">🔬</div>
-            <h3>Science Learning</h3>
-            <p>Hands-on exploration and practical learning.</p>
-        </div>
-
-        <div class="facility">
-            <div class="facility-icon">💻</div>
-            <h3>Technology</h3>
-            <p>Digital skills for a changing world.</p>
-        </div>
-
-        <div class="facility">
-            <div class="facility-icon">⚽</div>
-            <h3>Sports</h3>
-            <p>Healthy competition and teamwork.</p>
-        </div>
-
-        <div class="facility">
-            <div class="facility-icon">📚</div>
-            <h3>Library</h3>
-            <p>A place to explore books and ideas.</p>
-        </div>
-
-        <div class="facility">
-            <div class="facility-icon">🎭</div>
-            <h3>Creative Arts</h3>
-            <p>Opportunities for imagination and expression.</p>
-        </div>
-
-        <div class="facility">
-            <div class="facility-icon">🌳</div>
-            <h3>Outdoor Space</h3>
-            <p>Time to learn and play outside.</p>
-        </div>
-
-        <div class="facility">
-            <div class="facility-icon">🧩</div>
-            <h3>Activities</h3>
-            <p>Clubs and activities beyond academics.</p>
-        </div>
-
-        <div class="facility">
-            <div class="facility-icon">🚌</div>
-            <h3>Transport</h3>
-            <p>Add your school's transport information.</p>
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =========================
+<!-- =========================================================
      ADMISSIONS
-========================= -->
+     ========================================================= -->
 
-<section class="section admission" id="admissions">
+<section class="section admissions" id="admissions">
 
-    <div class="admission-box">
+    <div class="admission-wrap">
+
 
         <div>
-            <div class="section-tag" style="color:#a8f7ff;">
+
+            <div class="section-label" style="color:#8cecf3;">
                 Admissions
             </div>
 
-            <h2>Give your child a bright beginning.</h2>
+            <h2>
+                Start a bright beginning.
+            </h2>
 
             <p>
-                Start the admission journey by submitting an enquiry.
-                Our admissions team can provide information about
-                classes, requirements, fees and available places.
+                Interested in Bright Beggining? Send an admission
+                enquiry and the school can contact you with the
+                information you need.
             </p>
 
             <br>
 
-            <button class="btn btn-primary" onclick="openModal('admissionModal')">
-                Submit Admission Enquiry →
+            <button
+                class="btn btn-primary"
+                onclick="openModal('admissionModal')"
+            >
+                Send Admission Enquiry →
             </button>
+
         </div>
 
-        <div class="admission-steps">
 
-            <div class="step">
-                <strong>01 — Enquiry</strong>
-                <span>Tell us about the student and class you're interested in.</span>
+        <div class="admission-list">
+
+            <div class="admission-step">
+
+                <strong>
+                    01 — Enquiry
+                </strong>
+
+                <span>
+                    Tell the school which class or program
+                    you are interested in.
+                </span>
+
             </div>
 
-            <div class="step">
-                <strong>02 — Assessment</strong>
-                <span>Complete the school's required admission process.</span>
+
+            <div class="admission-step">
+
+                <strong>
+                    02 — Information
+                </strong>
+
+                <span>
+                    The school can provide its current
+                    requirements and admission information.
+                </span>
+
             </div>
 
-            <div class="step">
-                <strong>03 — Admission</strong>
-                <span>Complete the required documents and enrollment steps.</span>
+
+            <div class="admission-step">
+
+                <strong>
+                    03 — Next Steps
+                </strong>
+
+                <span>
+                    Follow the school's official admission
+                    process.
+                </span>
+
             </div>
 
         </div>
@@ -1913,173 +2086,319 @@ footer{
 
 </section>
 
-<!-- =========================
-     TEACHERS
-========================= -->
 
-<section class="section" id="teachers">
+<!-- =========================================================
+     TEACHERS
+     ========================================================= -->
+
+<section class="section teachers" id="teachers">
 
     <div class="section-header">
-        <div class="section-tag">Our Teachers</div>
-        <h2>Meet our teaching team.</h2>
+
+        <div class="section-label">
+            Our Teachers
+        </div>
+
+        <h2>
+            Meet the people behind the learning.
+        </h2>
+
         <p>
-            Teacher information shown here can be managed from
-            the administrator dashboard.
+            Only teachers added by the school owner will
+            appear here.
         </p>
+
     </div>
+
 
     <div class="teacher-grid" id="teacherGrid">
-        <!-- JavaScript loads teachers -->
+
     </div>
 
 </section>
 
-<!-- =========================
-     NEWS
-========================= -->
 
-<section class="section">
+<!-- =========================================================
+     ANNOUNCEMENTS
+     ========================================================= -->
+
+<section class="section announcements">
 
     <div class="section-header">
-        <div class="section-tag">School News</div>
-        <h2>What's happening at Bright Beginning?</h2>
+
+        <div class="section-label">
+            School Updates
+        </div>
+
+        <h2>
+            What's happening?
+        </h2>
+
         <p>
-            Announcements can be created and updated through the admin dashboard.
+            Official announcements added by the school
+            administrator will appear here.
         </p>
+
     </div>
+
 
     <div class="news-grid" id="newsGrid">
-        <!-- JavaScript loads announcements -->
+
     </div>
 
 </section>
 
-<!-- =========================
-     PARENTS
-========================= -->
 
-<section class="section reviews" id="parents">
+<!-- =========================================================
+     PARENTS
+     ========================================================= -->
+
+<section class="section parents" id="parents">
 
     <div class="section-header">
-        <div class="section-tag">Parent Voice</div>
-        <h2>What our parents say.</h2>
+
+        <div class="section-label">
+            Parents
+        </div>
+
+        <h2>
+            Your voice matters.
+        </h2>
+
         <p>
-            Parent reviews can be added and managed by the school administrator.
+            Real parent reviews can be submitted and
+            managed by the school.
         </p>
+
     </div>
+
 
     <div class="review-grid" id="reviewGrid">
-        <!-- JavaScript loads reviews -->
+
     </div>
+
 
     <div style="text-align:center;margin-top:35px;">
-        <button class="btn btn-primary" onclick="openModal('reviewModal')">
-            Leave a Parent Review
+
+        <button
+            class="btn btn-primary"
+            onclick="openModal('reviewModal')"
+        >
+            Submit a Parent Review
         </button>
+
     </div>
 
 </section>
 
-<!-- =========================
-     TEACHER APPLICATION
-========================= -->
 
-<section class="section" style="background:white;">
+<!-- =========================================================
+     TEACHER APPLICATION
+     ========================================================= -->
+
+<section class="section" style="background:#f8fbfc;">
 
     <div class="section-header">
-        <div class="section-tag">Join Our Team</div>
-        <h2>Are you ready to teach?</h2>
+
+        <div class="section-label">
+            Careers
+        </div>
+
+        <h2>
+            Want to join Bright Beggining?
+        </h2>
+
         <p>
-            Teachers can submit an application directly through the website.
+            Teachers and education professionals can submit
+            an application through the website.
         </p>
+
     </div>
 
+
     <div style="text-align:center;">
-        <button class="btn btn-primary" onclick="openModal('teacherModal')">
-            Apply as a Teacher →
+
+        <button
+            class="btn btn-primary"
+            onclick="openModal('teacherModal')"
+        >
+            Submit Teacher Application →
         </button>
+
     </div>
 
 </section>
 
-<!-- =========================
+
+<!-- =========================================================
      CONTACT
-========================= -->
+     ========================================================= -->
 
 <section class="section contact" id="contact">
 
     <div class="section-header">
-        <div class="section-tag">Contact</div>
-        <h2>Let's talk about your child's future.</h2>
+
+        <div class="section-label">
+            Contact
+        </div>
+
+        <h2>
+            We'd love to hear from you.
+        </h2>
+
         <p>
-            Contact information can be changed from the admin dashboard.
+            The school owner can add the official contact
+            details from the administration dashboard.
         </p>
+
     </div>
+
 
     <div class="contact-grid">
 
-        <div class="contact-info">
 
-            <div class="contact-card">
-                <strong>📍 School Address</strong>
+        <div class="contact-details">
+
+            <div class="contact-box">
+
+                <strong>
+                    📍 School Address
+                </strong>
+
                 <span id="contactAddress">
-                    Add your school address through the admin panel.
+                    Information will be added by the school.
                 </span>
+
             </div>
 
-            <div class="contact-card">
-                <strong>📞 Phone</strong>
-                <span id="contactPhone">+92 300 0000000</span>
+
+            <div class="contact-box">
+
+                <strong>
+                    📞 Phone
+                </strong>
+
+                <span id="contactPhone">
+                    Information will be added by the school.
+                </span>
+
             </div>
 
-            <div class="contact-card">
-                <strong>📧 Email</strong>
-                <span id="contactEmail">info@brightbeginning.edu</span>
+
+            <div class="contact-box">
+
+                <strong>
+                    📧 Email
+                </strong>
+
+                <span id="contactEmail">
+                    Information will be added by the school.
+                </span>
+
             </div>
 
-            <div class="contact-card">
-                <strong>🕘 Office Hours</strong>
+
+            <div class="contact-box">
+
+                <strong>
+                    🕘 Office Hours
+                </strong>
+
                 <span id="contactHours">
-                    Monday – Friday | 8:00 AM – 3:00 PM
+                    Information will be added by the school.
                 </span>
+
             </div>
 
         </div>
 
-        <form class="form" id="contactForm">
 
-            <h3>Send us a message</h3>
+        <form class="contact-form" id="contactForm">
+
+            <h3>
+                Send a message
+            </h3>
+
 
             <div class="form-grid">
 
                 <div class="form-group">
-                    <label>Your Name</label>
-                    <input type="text" id="contactName" required>
+
+                    <label>
+                        Your Name
+                    </label>
+
+                    <input
+                        id="contactName"
+                        required
+                    >
+
                 </div>
 
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="contactFormEmail" required>
-                </div>
 
                 <div class="form-group">
-                    <label>Phone</label>
-                    <input type="text" id="contactFormPhone">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="contactFormEmail"
+                        required
+                    >
+
                 </div>
 
+
                 <div class="form-group">
-                    <label>Subject</label>
-                    <input type="text" id="contactSubject" required>
+
+                    <label>
+                        Phone
+                    </label>
+
+                    <input
+                        id="contactFormPhone"
+                    >
+
                 </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Subject
+                    </label>
+
+                    <input
+                        id="contactSubject"
+                        required
+                    >
+
+                </div>
+
 
                 <div class="form-group full">
-                    <label>Message</label>
-                    <textarea id="contactMessage" required></textarea>
+
+                    <label>
+                        Message
+                    </label>
+
+                    <textarea
+                        id="contactMessage"
+                        required
+                    ></textarea>
+
                 </div>
 
             </div>
 
-            <button class="btn btn-primary form-submit" type="submit">
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+                style="margin-top:20px;"
+            >
                 Send Message →
             </button>
 
@@ -2089,104 +2408,171 @@ footer{
 
 </section>
 
-<!-- =========================
+
+<!-- =========================================================
      FOOTER
-========================= -->
+     ========================================================= -->
 
 <footer>
 
     <div class="footer-grid">
 
+
         <div class="footer-brand">
+
             <div class="brand">
-                <div class="logo">BB</div>
+
+                <div class="logo">
+                    BB
+                </div>
 
                 <div class="brand-text">
-                    <h2 style="color:white;" id="footerSchoolName">
-                        Bright Beginning
+
+                    <h2 style="color:white;">
+                        Bright Beggining
                     </h2>
-                    <span style="color:#68dce8;">SCHOOL</span>
+
+                    <span>
+                        SCHOOL
+                    </span>
+
                 </div>
+
             </div>
 
+
             <p>
-                Building confident learners, responsible citizens
-                and bright futures.
+                A modern school website created around
+                learning, growth, opportunity and a bright future.
             </p>
+
         </div>
 
-        <div class="footer-column">
-            <h4>School</h4>
-            <a href="#about">About Us</a>
-            <a href="#academics">Academics</a>
-            <a href="#teachers">Teachers</a>
-            <a href="#admissions">Admissions</a>
-        </div>
 
         <div class="footer-column">
-            <h4>Community</h4>
-            <a href="#parents">Parents</a>
-            <a href="#contact">Contact</a>
-            <a href="#" onclick="openModal('teacherModal');return false;">
+
+            <h4>
+                Explore
+            </h4>
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#academics">
+                Academics
+            </a>
+
+            <a href="#admissions">
+                Admissions
+            </a>
+
+            <a href="#teachers">
+                Teachers
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>
+                Community
+            </h4>
+
+            <a href="#parents">
+                Parents
+            </a>
+
+            <a href="#contact">
+                Contact
+            </a>
+
+            <a
+                href="#"
+                onclick="openModal('teacherModal');return false;"
+            >
                 Teacher Application
             </a>
-            <a href="#" onclick="openModal('reviewModal');return false;">
-                Parent Review
-            </a>
-        </div>
 
-        <div class="footer-column">
-            <h4>Contact</h4>
-            <a href="#" id="footerEmail">info@brightbeginning.edu</a>
-            <a href="#" id="footerPhone">+92 300 0000000</a>
-            <a href="#contact">Contact Office</a>
         </div>
 
     </div>
 
+
     <div class="footer-bottom">
+
         <span>
-            © <span id="year"></span> Bright Beginning School.
-            All rights reserved.
+            © <span id="year"></span> Bright Beggining
         </span>
 
         <span>
-            Designed for a brighter tomorrow.
+            Built for a brighter beginning.
         </span>
+
     </div>
 
 </footer>
 
-<!-- =========================
+
+<!-- =========================================================
      ADMISSION MODAL
-========================= -->
+     ========================================================= -->
 
 <div class="modal" id="admissionModal">
 
     <div class="modal-box">
 
-        <button class="modal-close" onclick="closeModal('admissionModal')">
+        <button
+            class="modal-close"
+            onclick="closeModal('admissionModal')"
+        >
             ×
         </button>
 
-        <h2>Admission Enquiry</h2>
+
+        <h2>
+            Admission Enquiry
+        </h2>
 
         <p>
-            Submit your information and the school can contact you
-            regarding admission.
+            Send your information to the school.
         </p>
 
-        <form class="admin-form" id="admissionForm">
 
-            <div class="admin-two">
-                <input id="studentName" placeholder="Student Name" required>
-                <input id="parentName" placeholder="Parent/Guardian Name" required>
+        <form class="modal-form" id="admissionForm">
+
+            <div class="two">
+
+                <input
+                    id="studentName"
+                    placeholder="Student Name"
+                    required
+                >
+
+                <input
+                    id="parentName"
+                    placeholder="Parent / Guardian Name"
+                    required
+                >
+
             </div>
 
-            <div class="admin-two">
-                <input id="studentAge" type="number" placeholder="Student Age">
+
+            <div class="two">
+
+                <input
+                    id="studentAge"
+                    type="number"
+                    placeholder="Student Age"
+                >
+
                 <select id="studentClass">
-                    <option value="">Class Interested In</option>
+
+                    <option value="">
+                        Class Interested In
+                    </option>
+
                     <option>Playgroup</option>
                     <option>Nursery</option>
                     <option>Prep</option>
@@ -2200,17 +2586,36 @@ footer{
                     <option>Grade 8</option>
                     <option>Grade 9</option>
                     <option>Grade 10</option>
+
                 </select>
+
             </div>
 
-            <input id="admissionPhone" placeholder="Phone Number" required>
 
-            <input id="admissionEmail" type="email" placeholder="Email Address">
+            <input
+                id="admissionPhone"
+                placeholder="Phone Number"
+                required
+            >
 
-            <textarea id="admissionMessage"
-                      placeholder="Additional information"></textarea>
 
-            <button class="btn btn-primary" type="submit">
+            <input
+                id="admissionEmail"
+                type="email"
+                placeholder="Email Address"
+            >
+
+
+            <textarea
+                id="admissionMessage"
+                placeholder="Additional information"
+            ></textarea>
+
+
+            <button
+                class="btn btn-primary"
+                type="submit"
+            >
                 Submit Enquiry
             </button>
 
@@ -2220,48 +2625,105 @@ footer{
 
 </div>
 
-<!-- =========================
-     TEACHER MODAL
-========================= -->
+
+<!-- =========================================================
+     TEACHER APPLICATION MODAL
+     ========================================================= -->
 
 <div class="modal" id="teacherModal">
 
     <div class="modal-box">
 
-        <button class="modal-close" onclick="closeModal('teacherModal')">
+        <button
+            class="modal-close"
+            onclick="closeModal('teacherModal')"
+        >
             ×
         </button>
 
-        <h2>Teacher Application</h2>
+
+        <h2>
+            Teacher Application
+        </h2>
 
         <p>
-            Teachers can use this form to send an application to the school.
+            Submit your application to the school.
         </p>
 
-        <form class="admin-form" id="teacherApplicationForm">
 
-            <div class="admin-two">
-                <input id="applicantName" placeholder="Full Name" required>
-                <input id="applicantEmail" type="email" placeholder="Email" required>
+        <form
+            class="modal-form"
+            id="teacherApplicationForm"
+        >
+
+            <div class="two">
+
+                <input
+                    id="applicantName"
+                    placeholder="Full Name"
+                    required
+                >
+
+                <input
+                    id="applicantEmail"
+                    type="email"
+                    placeholder="Email"
+                    required
+                >
+
             </div>
 
-            <div class="admin-two">
-                <input id="applicantPhone" placeholder="Phone Number">
-                <input id="applicantSubject" placeholder="Subject / Specialization">
+
+            <div class="two">
+
+                <input
+                    id="applicantPhone"
+                    placeholder="Phone Number"
+                >
+
+                <input
+                    id="applicantSubject"
+                    placeholder="Subject / Specialization"
+                >
+
             </div>
+
 
             <select id="applicantExperience">
-                <option value="">Teaching Experience</option>
-                <option>Less than 1 year</option>
-                <option>1–3 years</option>
-                <option>3–5 years</option>
-                <option>5+ years</option>
+
+                <option value="">
+                    Teaching Experience
+                </option>
+
+                <option>
+                    Less than 1 year
+                </option>
+
+                <option>
+                    1–3 years
+                </option>
+
+                <option>
+                    3–5 years
+                </option>
+
+                <option>
+                    5+ years
+                </option>
+
             </select>
 
-            <textarea id="applicantMessage"
-                      placeholder="Tell us about yourself"></textarea>
 
-            <button class="btn btn-primary" type="submit">
+            <textarea
+                id="applicantMessage"
+                placeholder="Tell us about yourself"
+            ></textarea>
+
+
+            <button
+                class="btn btn-primary"
+                type="submit"
+            >
                 Submit Application
             </button>
 
@@ -2271,42 +2733,81 @@ footer{
 
 </div>
 
-<!-- =========================
+
+<!-- =========================================================
      REVIEW MODAL
-========================= -->
+     ========================================================= -->
 
 <div class="modal" id="reviewModal">
 
     <div class="modal-box">
 
-        <button class="modal-close" onclick="closeModal('reviewModal')">
+        <button
+            class="modal-close"
+            onclick="closeModal('reviewModal')"
+        >
             ×
         </button>
 
-        <h2>Parent Review</h2>
+
+        <h2>
+            Parent Review
+        </h2>
 
         <p>
-            Share your experience with Bright Beginning.
+            Share your experience with Bright Beggining.
         </p>
 
-        <form class="admin-form" id="reviewForm">
 
-            <input id="reviewName" placeholder="Your Name" required>
+        <form class="modal-form" id="reviewForm">
+
+            <input
+                id="reviewName"
+                placeholder="Your Name"
+                required
+            >
+
 
             <select id="reviewRating" required>
-                <option value="">Rating</option>
-                <option value="5">★★★★★</option>
-                <option value="4">★★★★</option>
-                <option value="3">★★★</option>
-                <option value="2">★★</option>
-                <option value="1">★</option>
+
+                <option value="">
+                    Select Rating
+                </option>
+
+                <option value="5">
+                    ★★★★★
+                </option>
+
+                <option value="4">
+                    ★★★★
+                </option>
+
+                <option value="3">
+                    ★★★
+                </option>
+
+                <option value="2">
+                    ★★
+                </option>
+
+                <option value="1">
+                    ★
+                </option>
+
             </select>
 
-            <textarea id="reviewMessage"
-                      placeholder="Your review"
-                      required></textarea>
 
-            <button class="btn btn-primary" type="submit">
+            <textarea
+                id="reviewMessage"
+                placeholder="Your review"
+                required
+            ></textarea>
+
+
+            <button
+                class="btn btn-primary"
+                type="submit"
+            >
                 Submit Review
             </button>
 
@@ -2316,47 +2817,67 @@ footer{
 
 </div>
 
-<!-- =========================
-     ADMIN LOGIN
-========================= -->
+
+<!-- =========================================================
+     ADMIN LOGIN MODAL
+     ========================================================= -->
 
 <div class="modal" id="loginModal">
 
     <div class="modal-box" style="max-width:430px;">
 
-        <button class="modal-close" onclick="closeModal('loginModal')">
+        <button
+            class="modal-close"
+            onclick="closeModal('loginModal')"
+        >
             ×
         </button>
 
-        <h2>School Admin</h2>
+
+        <h2>
+            School Administration
+        </h2>
 
         <p>
-            Enter your administrator credentials.
+            Authorized school owners can manage the
+            information displayed on the website.
         </p>
 
-        <form class="admin-form" id="loginForm">
+
+        <form class="modal-form" id="loginForm">
 
             <input
-                type="text"
                 id="adminUsername"
                 placeholder="Username"
                 required
             >
 
+
             <input
-                type="password"
                 id="adminPassword"
+                type="password"
                 placeholder="Password"
                 required
             >
 
-            <button class="btn btn-primary" type="submit">
-                Login
+
+            <button
+                class="btn btn-primary"
+                type="submit"
+            >
+                Open Dashboard
             </button>
 
         </form>
 
-        <small style="display:block;margin-top:18px;color:#888;">
+
+        <small
+            style="
+                display:block;
+                margin-top:18px;
+                color:#89969c;
+            "
+        >
             Demo login: admin / bright123
         </small>
 
@@ -2364,50 +2885,70 @@ footer{
 
 </div>
 
-<!-- =========================
-     ADMIN PANEL
-========================= -->
+
+<!-- =========================================================
+     ADMIN DASHBOARD
+     ========================================================= -->
 
 <div class="admin-overlay" id="adminPanel">
 
     <div class="admin-layout">
 
+
         <aside class="admin-sidebar">
 
             <div class="admin-logo">
-                <h2>Bright Beginning</h2>
-                <span>ADMIN DASHBOARD</span>
+
+                <h2>
+                    Bright Beggining
+                </h2>
+
+                <span>
+                    OWNER DASHBOARD
+                </span>
+
             </div>
+
 
             <div class="admin-nav">
 
-                <button class="active" data-admin="dashboard">
+                <button
+                    class="active"
+                    data-admin="dashboard"
+                >
                     📊 Dashboard
                 </button>
+
 
                 <button data-admin="school">
                     🏫 School Information
                 </button>
 
+
                 <button data-admin="teachers">
                     👨‍🏫 Teachers
                 </button>
+
 
                 <button data-admin="announcements">
                     📢 Announcements
                 </button>
 
+
                 <button data-admin="reviews">
                     ⭐ Parent Reviews
                 </button>
+
 
                 <button data-admin="messages">
                     📩 Messages
                 </button>
 
+
                 <button data-admin="applications">
                     📝 Applications
                 </button>
+
 
                 <button data-admin="settings">
                     ⚙️ Settings
@@ -2417,122 +2958,183 @@ footer{
 
         </aside>
 
+
         <main class="admin-main">
 
-            <div class="admin-top">
+
+            <div class="admin-header">
 
                 <div>
-                    <h1 id="adminTitle">Dashboard</h1>
+
+                    <h1 id="adminTitle">
+                        Dashboard
+                    </h1>
+
                     <small>
-                        Manage your Bright Beginning website
+                        Manage Bright Beggining
                     </small>
+
                 </div>
 
-                <button class="admin-close" onclick="closeAdmin()">
+
+                <button
+                    class="exit-admin"
+                    onclick="closeAdmin()"
+                >
                     Exit Admin
                 </button>
 
             </div>
 
+
             <div class="admin-content">
+
 
                 <!-- DASHBOARD -->
 
-                <div class="admin-section active" id="admin-dashboard">
+                <div
+                    class="admin-section active"
+                    id="admin-dashboard"
+                >
 
                     <div class="dashboard-grid">
 
-                        <div class="dashboard-stat">
-                            <small>Teachers</small>
-                            <strong id="dashTeachers">0</strong>
+                        <div class="dashboard-card">
+                            <span>
+                                Teachers Added
+                            </span>
+
+                            <strong id="dashTeachers">
+                                0
+                            </strong>
                         </div>
 
-                        <div class="dashboard-stat">
-                            <small>Announcements</small>
-                            <strong id="dashNews">0</strong>
+
+                        <div class="dashboard-card">
+                            <span>
+                                Announcements
+                            </span>
+
+                            <strong id="dashNews">
+                                0
+                            </strong>
                         </div>
 
-                        <div class="dashboard-stat">
-                            <small>Parent Reviews</small>
-                            <strong id="dashReviews">0</strong>
+
+                        <div class="dashboard-card">
+                            <span>
+                                Parent Reviews
+                            </span>
+
+                            <strong id="dashReviews">
+                                0
+                            </strong>
                         </div>
 
-                        <div class="dashboard-stat">
-                            <small>Messages</small>
-                            <strong id="dashMessages">0</strong>
+
+                        <div class="dashboard-card">
+                            <span>
+                                Messages
+                            </span>
+
+                            <strong id="dashMessages">
+                                0
+                            </strong>
                         </div>
 
                     </div>
 
+
                     <div class="admin-card" style="margin-top:20px;">
 
-                        <h3>Welcome to your school dashboard</h3>
+                        <h3>
+                            Welcome to your dashboard
+                        </h3>
 
-                        <p style="color:#687984;line-height:1.8;">
-                            Use the menu to update the information displayed
-                            on your Bright Beginning website.
-                            Changes are saved in this browser.
-                        </p>
+                        <div class="admin-note">
+
+                            Nothing has been invented or added
+                            as real school information.
+
+                            Add your school's actual information
+                            through the sections on the left.
+
+                        </div>
 
                     </div>
 
                 </div>
 
-                <!-- SCHOOL INFO -->
 
-                <div class="admin-section" id="admin-school">
+                <!-- SCHOOL INFORMATION -->
+
+                <div
+                    class="admin-section"
+                    id="admin-school"
+                >
 
                     <div class="admin-card">
 
-                        <h3>School Information</h3>
+                        <h3>
+                            School Information
+                        </h3>
 
-                        <form class="admin-form" id="schoolInfoForm">
+
+                        <form
+                            class="admin-form"
+                            id="schoolForm"
+                        >
+
+                            <input
+                                id="editSchoolName"
+                                value="Bright Beggining"
+                                placeholder="School Name"
+                            >
+
 
                             <div class="admin-two">
-
-                                <input
-                                    id="editSchoolName"
-                                    placeholder="School Name"
-                                >
 
                                 <input
                                     id="editEmail"
-                                    placeholder="School Email"
-                                    type="email"
+                                    placeholder="Official School Email"
                                 >
-
-                            </div>
-
-                            <div class="admin-two">
 
                                 <input
                                     id="editPhone"
-                                    placeholder="Phone Number"
-                                >
-
-                                <input
-                                    id="editAddress"
-                                    placeholder="School Address"
+                                    placeholder="Official Phone"
                                 >
 
                             </div>
+
+
+                            <input
+                                id="editAddress"
+                                placeholder="Official School Address"
+                            >
+
 
                             <input
                                 id="editHours"
                                 placeholder="Office Hours"
                             >
 
+
                             <textarea
                                 id="editHero"
-                                placeholder="Hero description"
+                                placeholder="Homepage introduction"
                             ></textarea>
+
 
                             <textarea
                                 id="editAbout"
-                                placeholder="About school"
+                                placeholder="About the school"
                             ></textarea>
 
-                            <button class="btn btn-primary">
+
+                            <button
+                                class="btn btn-primary"
+                                type="submit"
+                            >
                                 Save School Information
                             </button>
 
@@ -2540,11 +3142,30 @@ footer{
 
                     </div>
 
+
                     <div class="admin-card">
 
-                        <h3>School Statistics</h3>
+                        <h3>
+                            School Statistics
+                        </h3>
 
-                        <form class="admin-form" id="statsForm">
+
+                        <div class="admin-note">
+
+                            Only enter real numbers here.
+                            Leave a field empty if you don't
+                            want that statistic displayed.
+
+                        </div>
+
+
+                        <br>
+
+
+                        <form
+                            class="admin-form"
+                            id="statsForm"
+                        >
 
                             <div class="admin-two">
 
@@ -2560,6 +3181,7 @@ footer{
 
                             </div>
 
+
                             <div class="admin-two">
 
                                 <input
@@ -2569,12 +3191,16 @@ footer{
 
                                 <input
                                     id="editYears"
-                                    placeholder="Years of Excellence"
+                                    placeholder="Years Established"
                                 >
 
                             </div>
 
-                            <button class="btn btn-primary">
+
+                            <button
+                                class="btn btn-primary"
+                                type="submit"
+                            >
                                 Save Statistics
                             </button>
 
@@ -2584,28 +3210,56 @@ footer{
 
                 </div>
 
+
                 <!-- TEACHERS -->
 
-                <div class="admin-section" id="admin-teachers">
+                <div
+                    class="admin-section"
+                    id="admin-teachers"
+                >
 
                     <div class="admin-card">
 
-                        <h3>Add Teacher</h3>
+                        <h3>
+                            Add Real Teacher
+                        </h3>
 
-                        <form class="admin-form" id="teacherAdminForm">
 
-                            <div class="admin-two">
-                                <input id="newTeacherName" placeholder="Teacher Name" required>
-                                <input id="newTeacherRole" placeholder="Position / Subject" required>
-                            </div>
+                        <form
+                            class="admin-form"
+                            id="teacherForm"
+                        >
 
-                            <input id="newTeacherImage"
-                                   placeholder="Image URL (optional)">
+                            <input
+                                id="newTeacherName"
+                                placeholder="Teacher Name"
+                                required
+                            >
 
-                            <textarea id="newTeacherBio"
-                                      placeholder="Teacher biography"></textarea>
 
-                            <button class="btn btn-primary">
+                            <input
+                                id="newTeacherRole"
+                                placeholder="Position / Subject"
+                                required
+                            >
+
+
+                            <input
+                                id="newTeacherImage"
+                                placeholder="Teacher Photo URL (optional)"
+                            >
+
+
+                            <textarea
+                                id="newTeacherBio"
+                                placeholder="Teacher information"
+                            ></textarea>
+
+
+                            <button
+                                class="btn btn-primary"
+                                type="submit"
+                            >
                                 Add Teacher
                             </button>
 
@@ -2613,126 +3267,214 @@ footer{
 
                     </div>
 
+
                     <div class="admin-card">
 
-                        <h3>Current Teachers</h3>
+                        <h3>
+                            Current Teachers
+                        </h3>
 
-                        <div class="admin-list" id="adminTeacherList"></div>
+                        <div
+                            class="admin-list"
+                            id="adminTeacherList"
+                        ></div>
 
                     </div>
 
                 </div>
 
+
                 <!-- ANNOUNCEMENTS -->
 
-                <div class="admin-section" id="admin-announcements">
+                <div
+                    class="admin-section"
+                    id="admin-announcements"
+                >
 
                     <div class="admin-card">
 
-                        <h3>Create Announcement</h3>
+                        <h3>
+                            Add School Announcement
+                        </h3>
 
-                        <form class="admin-form" id="announcementForm">
 
-                            <input id="newsTitle" placeholder="Announcement title" required>
+                        <form
+                            class="admin-form"
+                            id="announcementForm"
+                        >
 
-                            <textarea id="newsText"
-                                      placeholder="Announcement details"
-                                      required></textarea>
+                            <input
+                                id="newsTitle"
+                                placeholder="Announcement Title"
+                                required
+                            >
 
-                            <button class="btn btn-primary">
-                                Publish Announcement
+
+                            <textarea
+                                id="newsText"
+                                placeholder="Announcement Details"
+                                required
+                            ></textarea>
+
+
+                            <button
+                                class="btn btn-primary"
+                                type="submit"
+                            >
+                                Publish
                             </button>
 
                         </form>
 
                     </div>
 
+
                     <div class="admin-card">
 
-                        <h3>Published Announcements</h3>
+                        <h3>
+                            Current Announcements
+                        </h3>
 
-                        <div class="admin-list" id="adminNewsList"></div>
+                        <div
+                            class="admin-list"
+                            id="adminNewsList"
+                        ></div>
 
                     </div>
 
                 </div>
+
 
                 <!-- REVIEWS -->
 
-                <div class="admin-section" id="admin-reviews">
+                <div
+                    class="admin-section"
+                    id="admin-reviews"
+                >
 
                     <div class="admin-card">
 
-                        <h3>Parent Reviews</h3>
+                        <h3>
+                            Parent Reviews
+                        </h3>
 
-                        <div class="admin-list" id="adminReviewList"></div>
+                        <div
+                            class="admin-list"
+                            id="adminReviewList"
+                        ></div>
 
                     </div>
 
                 </div>
+
 
                 <!-- MESSAGES -->
 
-                <div class="admin-section" id="admin-messages">
+                <div
+                    class="admin-section"
+                    id="admin-messages"
+                >
 
                     <div class="admin-card">
 
-                        <h3>Contact Messages</h3>
+                        <h3>
+                            Contact Messages
+                        </h3>
 
-                        <div class="admin-list" id="adminMessageList"></div>
+                        <div
+                            class="admin-list"
+                            id="adminMessageList"
+                        ></div>
 
                     </div>
 
                 </div>
+
 
                 <!-- APPLICATIONS -->
 
-                <div class="admin-section" id="admin-applications">
+                <div
+                    class="admin-section"
+                    id="admin-applications"
+                >
 
                     <div class="admin-card">
 
-                        <h3>Admission Enquiries</h3>
+                        <h3>
+                            Admission Enquiries
+                        </h3>
 
-                        <div class="admin-list" id="adminAdmissionList"></div>
+                        <div
+                            class="admin-list"
+                            id="adminAdmissionList"
+                        ></div>
 
                     </div>
 
+
                     <div class="admin-card">
 
-                        <h3>Teacher Applications</h3>
+                        <h3>
+                            Teacher Applications
+                        </h3>
 
-                        <div class="admin-list" id="adminApplicationList"></div>
+                        <div
+                            class="admin-list"
+                            id="adminApplicationList"
+                        ></div>
 
                     </div>
 
                 </div>
 
+
                 <!-- SETTINGS -->
 
-                <div class="admin-section" id="admin-settings">
+                <div
+                    class="admin-section"
+                    id="admin-settings"
+                >
 
                     <div class="admin-card">
 
-                        <h3>Website Settings</h3>
+                        <h3>
+                            Website Settings
+                        </h3>
 
-                        <p style="color:#687984;line-height:1.7;">
-                            Your current website data is stored in your browser's
-                            local storage. This means the information remains
-                            available when you reopen the website on the same
-                            browser/device.
-                        </p>
+
+                        <div class="admin-note">
+
+                            This version stores dashboard information
+                            in the browser.
+
+                            For a real school website where the owner
+                            can log in from any device, the next step
+                            is connecting this dashboard to a secure
+                            online database.
+
+                        </div>
+
 
                         <br>
 
-                        <button class="btn btn-primary"
-                                onclick="exportData()">
-                            Export Website Data
+
+                        <button
+                            class="btn btn-primary"
+                            onclick="exportData()"
+                        >
+                            Export Data
                         </button>
 
-                        <button class="btn"
-                                style="background:#ffe9e9;color:#b52f2f;"
-                                onclick="resetData()">
-                            Reset Website Data
+
+                        <button
+                            class="btn"
+                            style="
+                                background:#ffe8e8;
+                                color:#b83232;
+                            "
+                            onclick="resetData()"
+                        >
+                            Reset Data
                         </button>
 
                     </div>
@@ -2747,38 +3489,38 @@ footer{
 
 </div>
 
-<!-- =========================
+
+<!-- =========================================================
      TOAST
-========================= -->
+     ========================================================= -->
 
 <div class="toast" id="toast"></div>
 
-<button class="back-top" id="backTop">↑</button>
 
-<!-- =========================
-     JAVASCRIPT
-========================= -->
+<button
+    class="back-top"
+    id="backTop"
+>
+    ↑
+</button>
+
 
 <script>
 
-/* ==========================================
-   DEFAULT WEBSITE DATA
-========================================== */
+/* =========================================================
+   DATA
+   ========================================================= */
 
-const DEFAULT_DATA = {
+const defaultData = {
 
     school:{
-        name:"Bright Beginning",
-        email:"info@brightbeginning.edu",
-        phone:"+92 300 0000000",
-        address:"Add your school address",
-        hours:"Monday – Friday | 8:00 AM – 3:00 PM",
-
-        hero:
-        "Welcome to Bright Beginning — a nurturing learning community dedicated to helping every student discover their potential, build confidence and prepare for a brighter future.",
-
-        about:
-        "Bright Beginning is built around one simple belief: every child deserves an environment where they feel safe, respected, encouraged and inspired to learn."
+        name:"Bright Beggining",
+        email:"",
+        phone:"",
+        address:"",
+        hours:"",
+        hero:"",
+        about:""
     },
 
     stats:{
@@ -2790,14 +3532,7 @@ const DEFAULT_DATA = {
 
     teachers:[],
 
-    announcements:[
-        {
-            id:1,
-            title:"Welcome to Bright Beginning",
-            text:"Our new school website is now live. More announcements will be added by the school administration.",
-            date:"September 2026"
-        }
-    ],
+    announcements:[],
 
     reviews:[],
 
@@ -2810,424 +3545,70 @@ const DEFAULT_DATA = {
 };
 
 
-/* ==========================================
-   DATA MANAGEMENT
-========================================== */
+let data = loadData();
+
 
 function loadData(){
 
-    const saved = localStorage.getItem("brightBeginningData");
+    const saved =
+        localStorage.getItem("brightBegginingData");
 
-    if(saved){
+    if(!saved){
 
-        try{
-
-            const parsed = JSON.parse(saved);
-
-            return {
-                ...DEFAULT_DATA,
-                ...parsed,
-                school:{
-                    ...DEFAULT_DATA.school,
-                    ...(parsed.school || {})
-                },
-                stats:{
-                    ...DEFAULT_DATA.stats,
-                    ...(parsed.stats || {})
-                }
-            };
-
-        }catch(error){
-
-            console.error(error);
-
-        }
+        return JSON.parse(
+            JSON.stringify(defaultData)
+        );
 
     }
 
-    return JSON.parse(JSON.stringify(DEFAULT_DATA));
-}
+    try{
 
-let data = loadData();
+        const parsed=JSON.parse(saved);
+
+        return {
+
+            ...defaultData,
+
+            ...parsed,
+
+            school:{
+                ...defaultData.school,
+                ...(parsed.school || {})
+            },
+
+            stats:{
+                ...defaultData.stats,
+                ...(parsed.stats || {})
+            }
+
+        };
+
+    }catch{
+
+        return JSON.parse(
+            JSON.stringify(defaultData)
+        );
+
+    }
+
+}
 
 
 function saveData(){
 
     localStorage.setItem(
-        "brightBeginningData",
+        "brightBegginingData",
         JSON.stringify(data)
     );
 
 }
 
 
-/* ==========================================
-   GENERAL UI
-========================================== */
-
-function showToast(message){
-
-    const toast = document.getElementById("toast");
-
-    toast.textContent = message;
-
-    toast.classList.add("show");
-
-    setTimeout(()=>{
-        toast.classList.remove("show");
-    },3000);
-
-}
-
-
-function openModal(id){
-
-    document.getElementById(id).classList.add("show");
-
-}
-
-
-function closeModal(id){
-
-    document.getElementById(id).classList.remove("show");
-
-}
-
-
-document.querySelectorAll(".modal").forEach(modal=>{
-
-    modal.addEventListener("click",(e)=>{
-
-        if(e.target === modal){
-            modal.classList.remove("show");
-        }
-
-    });
-
-});
-
-
-/* ==========================================
-   NAVIGATION
-========================================== */
-
-const menuBtn = document.getElementById("menuBtn");
-const navLinks = document.getElementById("navLinks");
-
-menuBtn.addEventListener("click",()=>{
-
-    navLinks.classList.toggle("open");
-
-});
-
-
-document.querySelectorAll(".nav-links a").forEach(link=>{
-
-    link.addEventListener("click",()=>{
-
-        navLinks.classList.remove("open");
-
-    });
-
-});
-
-
-/* ==========================================
-   LOADER
-========================================== */
-
-window.addEventListener("load",()=>{
-
-    setTimeout(()=>{
-
-        document.getElementById("loader")
-        .classList.add("hide");
-
-    },700);
-
-});
-
-
-/* ==========================================
-   APPLY WEBSITE DATA
-========================================== */
-
-function renderWebsite(){
-
-    document.getElementById("navSchoolName")
-        .textContent=data.school.name;
-
-    document.getElementById("footerSchoolName")
-        .textContent=data.school.name;
-
-    document.getElementById("topEmail")
-        .textContent="📧 "+data.school.email;
-
-    document.getElementById("topPhone")
-        .textContent="📞 "+data.school.phone;
-
-    document.getElementById("heroDescription")
-        .textContent=data.school.hero;
-
-    document.getElementById("aboutText")
-        .textContent=data.school.about;
-
-    document.getElementById("contactAddress")
-        .textContent=data.school.address;
-
-    document.getElementById("contactPhone")
-        .textContent=data.school.phone;
-
-    document.getElementById("contactEmail")
-        .textContent=data.school.email;
-
-    document.getElementById("contactHours")
-        .textContent=data.school.hours;
-
-    document.getElementById("footerEmail")
-        .textContent=data.school.email;
-
-    document.getElementById("footerPhone")
-        .textContent=data.school.phone;
-
-    document.getElementById("statStudents")
-        .textContent=data.stats.students || "—";
-
-    document.getElementById("statTeachers")
-        .textContent=data.stats.teachers || "—";
-
-    document.getElementById("statClasses")
-        .textContent=data.stats.classes || "—";
-
-    document.getElementById("statYears")
-        .textContent=data.stats.years || "—";
-
-    renderTeachers();
-    renderNews();
-    renderReviews();
-    renderAdmin();
-
-}
-
-
-/* ==========================================
-   TEACHERS
-========================================== */
-
-function renderTeachers(){
-
-    const grid=document.getElementById("teacherGrid");
-
-    if(data.teachers.length===0){
-
-        grid.innerHTML=`
-
-            <div style="
-                grid-column:1/-1;
-                text-align:center;
-                padding:50px;
-                background:#f5fbfc;
-                border-radius:25px;
-                color:#71828b;
-            ">
-
-                <div style="font-size:45px;margin-bottom:15px;">
-                    👨‍🏫
-                </div>
-
-                <h3 style="color:#092c3e;margin-bottom:8px;">
-                    Our teaching team will appear here
-                </h3>
-
-                <p>
-                    School administrators can add real teacher information
-                    from the admin dashboard.
-                </p>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    grid.innerHTML=data.teachers.map(teacher=>{
-
-        const image=teacher.image ||
-            "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=700&q=80";
-
-        return `
-
-            <div class="teacher-card">
-
-                <div class="teacher-photo">
-
-                    <img
-                        src="${escapeHTML(image)}"
-                        alt="${escapeHTML(teacher.name)}"
-                    >
-
-                </div>
-
-                <div class="teacher-info">
-
-                    <h3>${escapeHTML(teacher.name)}</h3>
-
-                    <div class="teacher-role">
-                        ${escapeHTML(teacher.role)}
-                    </div>
-
-                    <p>
-                        ${escapeHTML(teacher.bio || "Bright Beginning teaching team member.")}
-                    </p>
-
-                </div>
-
-            </div>
-
-        `;
-
-    }).join("");
-
-}
-
-
-/* ==========================================
-   NEWS
-========================================== */
-
-function renderNews(){
-
-    const grid=document.getElementById("newsGrid");
-
-    if(data.announcements.length===0){
-
-        grid.innerHTML=`
-
-            <div style="grid-column:1/-1;text-align:center;">
-                No announcements yet.
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-    grid.innerHTML=data.announcements.map(news=>`
-
-        <div class="news-card">
-
-            <div class="news-date">
-                ${escapeHTML(news.date)}
-            </div>
-
-            <h3>
-                ${escapeHTML(news.title)}
-            </h3>
-
-            <p>
-                ${escapeHTML(news.text)}
-            </p>
-
-        </div>
-
-    `).join("");
-
-}
-
-
-/* ==========================================
-   REVIEWS
-========================================== */
-
-function renderReviews(){
-
-    const grid=document.getElementById("reviewGrid");
-
-    if(data.reviews.length===0){
-
-        grid.innerHTML=`
-
-            <div style="
-                grid-column:1/-1;
-                text-align:center;
-                padding:40px;
-                color:#71828b;
-            ">
-
-                <div style="font-size:40px;">⭐</div>
-
-                <h3 style="color:#092c3e;margin:10px;">
-                    Parent reviews will appear here
-                </h3>
-
-                <p>
-                    Reviews can be submitted using the button below.
-                </p>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    grid.innerHTML=data.reviews.slice(0,6).map(review=>{
-
-        const initials=review.name
-            .split(" ")
-            .map(word=>word[0])
-            .join("")
-            .substring(0,2)
-            .toUpperCase();
-
-        return `
-
-            <div class="review">
-
-                <div class="stars">
-                    ${"★".repeat(Number(review.rating))}
-                    ${"☆".repeat(5-Number(review.rating))}
-                </div>
-
-                <p>
-                    “${escapeHTML(review.message)}”
-                </p>
-
-                <div class="review-author">
-
-                    <div class="author-avatar">
-                        ${escapeHTML(initials)}
-                    </div>
-
-                    <div>
-                        <strong>${escapeHTML(review.name)}</strong>
-                        <small style="display:block;color:#7c8c94;">
-                            Parent
-                        </small>
-                    </div>
-
-                </div>
-
-            </div>
-
-        `;
-
-    }).join("");
-
-}
-
-
-/* ==========================================
-   ESCAPE HTML
-========================================== */
-
-function escapeHTML(value){
+/* =========================================================
+   ESCAPE
+   ========================================================= */
+
+function safe(value){
 
     if(value===undefined || value===null){
         return "";
@@ -3243,245 +3624,661 @@ function escapeHTML(value){
 }
 
 
-/* ==========================================
-   CONTACT FORM
-========================================== */
+/* =========================================================
+   TOAST
+   ========================================================= */
 
-document.getElementById("contactForm")
-.addEventListener("submit",(e)=>{
+function toast(message){
 
-    e.preventDefault();
+    const box=document.getElementById("toast");
 
-    const message={
+    box.textContent=message;
 
-        id:Date.now(),
+    box.classList.add("show");
 
-        name:document.getElementById("contactName").value,
+    setTimeout(()=>{
+        box.classList.remove("show");
+    },3000);
 
-        email:document.getElementById("contactFormEmail").value,
-
-        phone:document.getElementById("contactFormPhone").value,
-
-        subject:document.getElementById("contactSubject").value,
-
-        message:document.getElementById("contactMessage").value,
-
-        date:new Date().toLocaleString()
-
-    };
+}
 
 
-    data.messages.unshift(message);
+/* =========================================================
+   MODALS
+   ========================================================= */
 
-    saveData();
+function openModal(id){
 
-    e.target.reset();
+    document.getElementById(id)
+        .classList.add("show");
 
-    showToast("Your message has been received.");
+}
+
+
+function closeModal(id){
+
+    document.getElementById(id)
+        .classList.remove("show");
+
+}
+
+
+document.querySelectorAll(".modal")
+.forEach(modal=>{
+
+    modal.addEventListener("click",event=>{
+
+        if(event.target===modal){
+            modal.classList.remove("show");
+        }
+
+    });
 
 });
 
 
-/* ==========================================
-   ADMISSION FORM
-========================================== */
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
 
-document.getElementById("admissionForm")
-.addEventListener("submit",(e)=>{
+document
+.getElementById("menuBtn")
+.addEventListener("click",()=>{
 
-    e.preventDefault();
+    document
+    .getElementById("navLinks")
+    .classList.toggle("open");
 
-    const admission={
+});
+
+
+document
+.querySelectorAll(".nav-links a")
+.forEach(link=>{
+
+    link.addEventListener("click",()=>{
+
+        document
+        .getElementById("navLinks")
+        .classList.remove("open");
+
+    });
+
+});
+
+
+/* =========================================================
+   WEBSITE RENDER
+   ========================================================= */
+
+function renderWebsite(){
+
+    const email =
+        data.school.email ||
+        "Official email will be added";
+
+    const phone =
+        data.school.phone ||
+        "Official phone will be added";
+
+    const address =
+        data.school.address ||
+        "Official address will be added";
+
+    const hours =
+        data.school.hours ||
+        "Office hours will be added";
+
+
+    document.getElementById("topEmail")
+        .textContent=email;
+
+    document.getElementById("topPhone")
+        .textContent=phone;
+
+
+    document.getElementById("contactEmail")
+        .textContent=email;
+
+    document.getElementById("contactPhone")
+        .textContent=phone;
+
+    document.getElementById("contactAddress")
+        .textContent=address;
+
+    document.getElementById("contactHours")
+        .textContent=hours;
+
+
+    renderTeachers();
+
+    renderAnnouncements();
+
+    renderReviews();
+
+    renderAdmin();
+
+}
+
+
+/* =========================================================
+   TEACHERS
+   ========================================================= */
+
+function renderTeachers(){
+
+    const box =
+        document.getElementById("teacherGrid");
+
+
+    if(data.teachers.length===0){
+
+        box.innerHTML=`
+
+            <div class="empty-info"
+                 style="grid-column:1/-1;">
+
+                <div class="empty-icon">
+                    👨‍🏫
+                </div>
+
+                <strong>
+                    Teacher information will appear here.
+                </strong>
+
+                The school owner can add the real teaching
+                team through the administration dashboard.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    box.innerHTML=data.teachers
+    .map(teacher=>{
+
+        const photo =
+            teacher.image ||
+            "";
+
+
+        return `
+
+            <div class="teacher-card">
+
+                <div class="teacher-photo">
+
+                    ${
+                        photo
+                        ?
+                        `<img
+                            src="${safe(photo)}"
+                            alt="${safe(teacher.name)}"
+                        >`
+                        :
+                        `👨‍🏫`
+                    }
+
+                </div>
+
+                <div class="teacher-info">
+
+                    <h3>
+                        ${safe(teacher.name)}
+                    </h3>
+
+                    <div class="teacher-role">
+                        ${safe(teacher.role)}
+                    </div>
+
+                    ${
+                        teacher.bio
+                        ?
+                        `<p>${safe(teacher.bio)}</p>`
+                        :
+                        ""
+                    }
+
+                </div>
+
+            </div>
+
+        `;
+
+    })
+    .join("");
+
+}
+
+
+/* =========================================================
+   ANNOUNCEMENTS
+   ========================================================= */
+
+function renderAnnouncements(){
+
+    const box =
+        document.getElementById("newsGrid");
+
+
+    if(data.announcements.length===0){
+
+        box.innerHTML=`
+
+            <div class="empty-info"
+                 style="grid-column:1/-1;">
+
+                <div class="empty-icon">
+                    📢
+                </div>
+
+                <strong>
+                    No announcements yet.
+                </strong>
+
+                Official school announcements added by
+                the owner will appear here.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    box.innerHTML=data.announcements
+    .map(item=>`
+
+        <div class="news-card">
+
+            <div class="news-date">
+                ${safe(item.date)}
+            </div>
+
+            <h3>
+                ${safe(item.title)}
+            </h3>
+
+            <p>
+                ${safe(item.text)}
+            </p>
+
+        </div>
+
+    `)
+    .join("");
+
+}
+
+
+/* =========================================================
+   REVIEWS
+   ========================================================= */
+
+function renderReviews(){
+
+    const box =
+        document.getElementById("reviewGrid");
+
+
+    const approved =
+        data.reviews.filter(
+            review=>review.approved
+        );
+
+
+    if(approved.length===0){
+
+        box.innerHTML=`
+
+            <div class="empty-info"
+                 style="grid-column:1/-1;">
+
+                <div class="empty-icon">
+                    ⭐
+                </div>
+
+                <strong>
+                    Parent reviews will appear here.
+                </strong>
+
+                No reviews have been published yet.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    box.innerHTML=approved
+    .slice(0,6)
+    .map(review=>`
+
+        <div class="review-card">
+
+            <div class="review-stars">
+
+                ${"★".repeat(Number(review.rating))}
+                ${"☆".repeat(5-Number(review.rating))}
+
+            </div>
+
+            <p>
+                “${safe(review.message)}”
+            </p>
+
+            <div class="review-author">
+                ${safe(review.name)}
+            </div>
+
+        </div>
+
+    `)
+    .join("");
+
+}
+
+
+/* =========================================================
+   CONTACT FORM
+   ========================================================= */
+
+document
+.getElementById("contactForm")
+.addEventListener("submit",event=>{
+
+    event.preventDefault();
+
+
+    data.messages.unshift({
 
         id:Date.now(),
 
-        studentName:document.getElementById("studentName").value,
+        name:
+            document.getElementById("contactName").value,
 
-        parentName:document.getElementById("parentName").value,
+        email:
+            document.getElementById("contactFormEmail").value,
 
-        age:document.getElementById("studentAge").value,
+        phone:
+            document.getElementById("contactFormPhone").value,
 
-        className:document.getElementById("studentClass").value,
+        subject:
+            document.getElementById("contactSubject").value,
 
-        phone:document.getElementById("admissionPhone").value,
+        message:
+            document.getElementById("contactMessage").value,
 
-        email:document.getElementById("admissionEmail").value,
+        date:
+            new Date().toLocaleString()
 
-        message:document.getElementById("admissionMessage").value,
+    });
 
-        date:new Date().toLocaleString()
-
-    };
-
-
-    data.admissions.unshift(admission);
 
     saveData();
 
-    e.target.reset();
+    event.target.reset();
+
+    renderAdmin();
+
+    toast(
+        "Your message has been submitted."
+    );
+
+});
+
+
+/* =========================================================
+   ADMISSION FORM
+   ========================================================= */
+
+document
+.getElementById("admissionForm")
+.addEventListener("submit",event=>{
+
+    event.preventDefault();
+
+
+    data.admissions.unshift({
+
+        id:Date.now(),
+
+        student:
+            document.getElementById("studentName").value,
+
+        parent:
+            document.getElementById("parentName").value,
+
+        age:
+            document.getElementById("studentAge").value,
+
+        className:
+            document.getElementById("studentClass").value,
+
+        phone:
+            document.getElementById("admissionPhone").value,
+
+        email:
+            document.getElementById("admissionEmail").value,
+
+        message:
+            document.getElementById("admissionMessage").value,
+
+        date:
+            new Date().toLocaleString()
+
+    });
+
+
+    saveData();
+
+    event.target.reset();
 
     closeModal("admissionModal");
 
-    showToast("Admission enquiry submitted.");
+    renderAdmin();
+
+    toast(
+        "Admission enquiry submitted."
+    );
 
 });
 
 
-/* ==========================================
+/* =========================================================
    TEACHER APPLICATION
-========================================== */
+   ========================================================= */
 
-document.getElementById("teacherApplicationForm")
-.addEventListener("submit",(e)=>{
+document
+.getElementById("teacherApplicationForm")
+.addEventListener("submit",event=>{
 
-    e.preventDefault();
+    event.preventDefault();
 
-    const application={
+
+    data.applications.unshift({
 
         id:Date.now(),
 
-        name:document.getElementById("applicantName").value,
+        name:
+            document.getElementById("applicantName").value,
 
-        email:document.getElementById("applicantEmail").value,
+        email:
+            document.getElementById("applicantEmail").value,
 
-        phone:document.getElementById("applicantPhone").value,
+        phone:
+            document.getElementById("applicantPhone").value,
 
-        subject:document.getElementById("applicantSubject").value,
+        subject:
+            document.getElementById("applicantSubject").value,
 
-        experience:document.getElementById("applicantExperience").value,
+        experience:
+            document.getElementById("applicantExperience").value,
 
-        message:document.getElementById("applicantMessage").value,
+        message:
+            document.getElementById("applicantMessage").value,
 
-        date:new Date().toLocaleString()
+        date:
+            new Date().toLocaleString()
 
-    };
+    });
 
-
-    data.applications.unshift(application);
 
     saveData();
 
-    e.target.reset();
+    event.target.reset();
 
     closeModal("teacherModal");
 
-    showToast("Teacher application submitted.");
+    renderAdmin();
+
+    toast(
+        "Teacher application submitted."
+    );
 
 });
 
 
-/* ==========================================
+/* =========================================================
    REVIEW FORM
-========================================== */
+   ========================================================= */
 
-document.getElementById("reviewForm")
-.addEventListener("submit",(e)=>{
+document
+.getElementById("reviewForm")
+.addEventListener("submit",event=>{
 
-    e.preventDefault();
+    event.preventDefault();
 
-    const review={
+
+    data.reviews.unshift({
 
         id:Date.now(),
 
-        name:document.getElementById("reviewName").value,
+        name:
+            document.getElementById("reviewName").value,
 
-        rating:document.getElementById("reviewRating").value,
+        rating:
+            document.getElementById("reviewRating").value,
 
-        message:document.getElementById("reviewMessage").value,
+        message:
+            document.getElementById("reviewMessage").value,
 
         approved:false,
 
-        date:new Date().toLocaleString()
+        date:
+            new Date().toLocaleString()
 
-    };
+    });
 
-
-    data.reviews.unshift(review);
 
     saveData();
 
-    e.target.reset();
+    event.target.reset();
 
     closeModal("reviewModal");
 
-    showToast("Thank you! Your review was submitted.");
+    renderAdmin();
 
-    renderWebsite();
+    toast(
+        "Review submitted for approval."
+    );
 
 });
 
 
-/* ==========================================
+/* =========================================================
    ADMIN LOGIN
-========================================== */
+   ========================================================= */
 
-document.getElementById("loginForm")
-.addEventListener("submit",(e)=>{
+document
+.getElementById("loginForm")
+.addEventListener("submit",event=>{
 
-    e.preventDefault();
+    event.preventDefault();
 
-    const username=
+
+    const username =
         document.getElementById("adminUsername").value;
 
-    const password=
+    const password =
         document.getElementById("adminPassword").value;
 
 
-    /*
-       DEMO LOGIN
-
-       Username: admin
-       Password: bright123
-
-       IMPORTANT:
-       A real public website should use
-       server-side authentication.
-    */
-
-    if(username==="admin" && password==="bright123"){
+    if(
+        username==="admin" &&
+        password==="bright123"
+    ){
 
         closeModal("loginModal");
 
-        document.getElementById("adminPanel")
-            .classList.add("show");
+        document
+        .getElementById("adminPanel")
+        .classList.add("show");
 
         renderAdmin();
 
-        showToast("Welcome to the admin dashboard.");
+        toast(
+            "Admin dashboard opened."
+        );
 
     }else{
 
-        showToast("Incorrect admin login.");
+        toast(
+            "Incorrect username or password."
+        );
 
     }
 
 });
 
 
-/* ==========================================
-   ADMIN PANEL NAVIGATION
-========================================== */
+/* =========================================================
+   ADMIN NAVIGATION
+   ========================================================= */
 
-document.querySelectorAll(".admin-nav button")
+document
+.querySelectorAll(".admin-nav button")
 .forEach(button=>{
 
     button.addEventListener("click",()=>{
 
-        document.querySelectorAll(".admin-nav button")
-        .forEach(btn=>btn.classList.remove("active"));
+        document
+        .querySelectorAll(".admin-nav button")
+        .forEach(btn=>{
+            btn.classList.remove("active");
+        });
+
 
         button.classList.add("active");
 
-        const section=button.dataset.admin;
 
-        document.querySelectorAll(".admin-section")
-        .forEach(sec=>sec.classList.remove("active"));
+        document
+        .querySelectorAll(".admin-section")
+        .forEach(section=>{
+            section.classList.remove("active");
+        });
 
-        document.getElementById("admin-"+section)
-            .classList.add("active");
 
-        document.getElementById("adminTitle")
-            .textContent=button.textContent.trim();
+        document
+        .getElementById(
+            "admin-"+button.dataset.admin
+        )
+        .classList.add("active");
+
+
+        document
+        .getElementById("adminTitle")
+        .textContent=
+            button.textContent.trim();
 
     });
 
@@ -3490,78 +4287,51 @@ document.querySelectorAll(".admin-nav button")
 
 function closeAdmin(){
 
-    document.getElementById("adminPanel")
-        .classList.remove("show");
+    document
+    .getElementById("adminPanel")
+    .classList.remove("show");
 
 }
 
 
-/* ==========================================
-   SCHOOL INFO ADMIN
-========================================== */
+/* =========================================================
+   SCHOOL INFORMATION
+   ========================================================= */
 
-function populateSchoolForm(){
+document
+.getElementById("schoolForm")
+.addEventListener("submit",event=>{
 
-    document.getElementById("editSchoolName").value=
-        data.school.name;
-
-    document.getElementById("editEmail").value=
-        data.school.email;
-
-    document.getElementById("editPhone").value=
-        data.school.phone;
-
-    document.getElementById("editAddress").value=
-        data.school.address;
-
-    document.getElementById("editHours").value=
-        data.school.hours;
-
-    document.getElementById("editHero").value=
-        data.school.hero;
-
-    document.getElementById("editAbout").value=
-        data.school.about;
-
-    document.getElementById("editStudents").value=
-        data.stats.students;
-
-    document.getElementById("editTeachersCount").value=
-        data.stats.teachers;
-
-    document.getElementById("editClasses").value=
-        data.stats.classes;
-
-    document.getElementById("editYears").value=
-        data.stats.years;
-
-}
+    event.preventDefault();
 
 
-document.getElementById("schoolInfoForm")
-.addEventListener("submit",(e)=>{
+    data.school.name =
+        document.getElementById("editSchoolName").value
+        ||
+        "Bright Beggining";
 
-    e.preventDefault();
 
-    data.school.name=
-        document.getElementById("editSchoolName").value;
-
-    data.school.email=
+    data.school.email =
         document.getElementById("editEmail").value;
 
-    data.school.phone=
+
+    data.school.phone =
         document.getElementById("editPhone").value;
 
-    data.school.address=
+
+    data.school.address =
         document.getElementById("editAddress").value;
 
-    data.school.hours=
+
+    data.school.hours =
         document.getElementById("editHours").value;
 
-    data.school.hero=
+
+    data.school.hero =
         document.getElementById("editHero").value;
 
-    data.school.about=
+
+    data.school.about =
         document.getElementById("editAbout").value;
 
 
@@ -3569,268 +4339,143 @@ document.getElementById("schoolInfoForm")
 
     renderWebsite();
 
-    showToast("School information updated.");
+    toast(
+        "School information saved."
+    );
 
 });
 
 
-document.getElementById("statsForm")
-.addEventListener("submit",(e)=>{
+/* =========================================================
+   STATISTICS
+   ========================================================= */
 
-    e.preventDefault();
+document
+.getElementById("statsForm")
+.addEventListener("submit",event=>{
 
-    data.stats.students=
+    event.preventDefault();
+
+
+    data.stats.students =
         document.getElementById("editStudents").value;
 
-    data.stats.teachers=
+
+    data.stats.teachers =
         document.getElementById("editTeachersCount").value;
 
-    data.stats.classes=
+
+    data.stats.classes =
         document.getElementById("editClasses").value;
 
-    data.stats.years=
+
+    data.stats.years =
         document.getElementById("editYears").value;
 
 
+    /*
+       IMPORTANT:
+       These values are intentionally NOT shown
+       on the public website.
+       The current version avoids fake statistics.
+    */
+
+
     saveData();
 
-    renderWebsite();
-
-    showToast("Statistics updated.");
+    toast(
+        "Statistics saved for future use."
+    );
 
 });
 
 
-/* ==========================================
+/* =========================================================
    ADD TEACHER
-========================================== */
+   ========================================================= */
 
-document.getElementById("teacherAdminForm")
-.addEventListener("submit",(e)=>{
+document
+.getElementById("teacherForm")
+.addEventListener("submit",event=>{
 
-    e.preventDefault();
+    event.preventDefault();
 
-    const teacher={
+
+    data.teachers.push({
 
         id:Date.now(),
 
-        name:document.getElementById("newTeacherName").value,
+        name:
+            document.getElementById("newTeacherName").value,
 
-        role:document.getElementById("newTeacherRole").value,
+        role:
+            document.getElementById("newTeacherRole").value,
 
-        image:document.getElementById("newTeacherImage").value,
+        image:
+            document.getElementById("newTeacherImage").value,
 
-        bio:document.getElementById("newTeacherBio").value
+        bio:
+            document.getElementById("newTeacherBio").value
 
-    };
+    });
 
-
-    data.teachers.push(teacher);
 
     saveData();
 
-    e.target.reset();
+    event.target.reset();
 
     renderWebsite();
 
-    showToast("Teacher added.");
+    toast(
+        "Teacher added."
+    );
 
 });
 
 
-/* ==========================================
+/* =========================================================
    ADD ANNOUNCEMENT
-========================================== */
+   ========================================================= */
 
-document.getElementById("announcementForm")
-.addEventListener("submit",(e)=>{
+document
+.getElementById("announcementForm")
+.addEventListener("submit",event=>{
 
-    e.preventDefault();
+    event.preventDefault();
 
-    const announcement={
+
+    data.announcements.unshift({
 
         id:Date.now(),
 
-        title:document.getElementById("newsTitle").value,
+        title:
+            document.getElementById("newsTitle").value,
 
-        text:document.getElementById("newsText").value,
+        text:
+            document.getElementById("newsText").value,
 
-        date:new Date().toLocaleDateString()
+        date:
+            new Date().toLocaleDateString()
 
-    };
+    });
 
-
-    data.announcements.unshift(announcement);
 
     saveData();
 
-    e.target.reset();
+    event.target.reset();
 
     renderWebsite();
 
-    showToast("Announcement published.");
+    toast(
+        "Announcement published."
+    );
 
 });
 
 
-/* ==========================================
-   DELETE TEACHER
-========================================== */
-
-function deleteTeacher(id){
-
-    if(!confirm("Remove this teacher?")){
-        return;
-    }
-
-    data.teachers=
-        data.teachers.filter(teacher=>teacher.id!==id);
-
-    saveData();
-
-    renderWebsite();
-
-    showToast("Teacher removed.");
-
-}
-
-
-/* ==========================================
-   DELETE NEWS
-========================================== */
-
-function deleteNews(id){
-
-    if(!confirm("Delete this announcement?")){
-        return;
-    }
-
-    data.announcements=
-        data.announcements.filter(news=>news.id!==id);
-
-    saveData();
-
-    renderWebsite();
-
-    showToast("Announcement deleted.");
-
-}
-
-
-/* ==========================================
-   DELETE REVIEW
-========================================== */
-
-function deleteReview(id){
-
-    if(!confirm("Delete this review?")){
-        return;
-    }
-
-    data.reviews=
-        data.reviews.filter(review=>review.id!==id);
-
-    saveData();
-
-    renderWebsite();
-
-    showToast("Review deleted.");
-
-}
-
-
-/* ==========================================
-   APPROVE REVIEW
-========================================== */
-
-function approveReview(id){
-
-    const review=data.reviews.find(r=>r.id===id);
-
-    if(review){
-
-        review.approved=true;
-
-        saveData();
-
-        renderWebsite();
-
-        showToast("Review approved.");
-
-    }
-
-}
-
-
-/* ==========================================
-   DELETE MESSAGE
-========================================== */
-
-function deleteMessage(id){
-
-    if(!confirm("Delete this message?")){
-        return;
-    }
-
-    data.messages=
-        data.messages.filter(message=>message.id!==id);
-
-    saveData();
-
-    renderAdmin();
-
-    showToast("Message deleted.");
-
-}
-
-
-/* ==========================================
-   DELETE ADMISSION
-========================================== */
-
-function deleteAdmission(id){
-
-    if(!confirm("Delete this admission enquiry?")){
-        return;
-    }
-
-    data.admissions=
-        data.admissions.filter(item=>item.id!==id);
-
-    saveData();
-
-    renderAdmin();
-
-    showToast("Admission enquiry deleted.");
-
-}
-
-
-/* ==========================================
-   DELETE APPLICATION
-========================================== */
-
-function deleteApplication(id){
-
-    if(!confirm("Delete this teacher application?")){
-        return;
-    }
-
-    data.applications=
-        data.applications.filter(item=>item.id!==id);
-
-    saveData();
-
-    renderAdmin();
-
-    showToast("Application deleted.");
-
-}
-
-
-/* ==========================================
+/* =========================================================
    ADMIN RENDER
-========================================== */
+   ========================================================= */
 
 function renderAdmin(){
 
@@ -3849,45 +4494,48 @@ function renderAdmin(){
 
     /* Teachers */
 
-    const teacherList=
-        document.getElementById("adminTeacherList");
+    const teachers =
+        document.getElementById(
+            "adminTeacherList"
+        );
+
 
     if(data.teachers.length===0){
 
-        teacherList.innerHTML=`
-            <p style="color:#71828b;">
-                No teachers added yet.
-            </p>
+        teachers.innerHTML=`
+
+            <div class="admin-note">
+                No teachers have been added yet.
+            </div>
+
         `;
 
     }else{
 
-        teacherList.innerHTML=
-            data.teachers.map(teacher=>`
+        teachers.innerHTML =
+            data.teachers.map(item=>`
 
                 <div class="admin-item">
 
-                    <div class="admin-item-info">
+                    <div>
 
                         <strong>
-                            ${escapeHTML(teacher.name)}
+                            ${safe(item.name)}
                         </strong>
 
                         <span>
-                            ${escapeHTML(teacher.role)}
+                            ${safe(item.role)}
                         </span>
 
                     </div>
 
-                    <div class="admin-actions">
 
-                        <button
-                            class="small-btn delete"
-                            onclick="deleteTeacher(${teacher.id})">
-                            Delete
-                        </button>
-
-                    </div>
+                    <button
+                        class="delete-btn"
+                        onclick="deleteTeacher(${item.id})"
+                    >
+                        Delete
+                    </button>
 
                 </div>
 
@@ -3898,79 +4546,127 @@ function renderAdmin(){
 
     /* News */
 
-    const newsList=
-        document.getElementById("adminNewsList");
+    const news =
+        document.getElementById(
+            "adminNewsList"
+        );
 
-    newsList.innerHTML=
-        data.announcements.map(news=>`
 
-            <div class="admin-item">
+    if(data.announcements.length===0){
 
-                <div class="admin-item-info">
+        news.innerHTML=`
 
-                    <strong>
-                        ${escapeHTML(news.title)}
-                    </strong>
+            <div class="admin-note">
+                No announcements have been published.
+            </div>
 
-                    <span>
-                        ${escapeHTML(news.date)}
-                    </span>
+        `;
 
-                </div>
+    }else{
 
-                <div class="admin-actions">
+        news.innerHTML =
+            data.announcements.map(item=>`
+
+                <div class="admin-item">
+
+                    <div>
+
+                        <strong>
+                            ${safe(item.title)}
+                        </strong>
+
+                        <span>
+                            ${safe(item.date)}
+                        </span>
+
+                    </div>
+
 
                     <button
-                        class="small-btn delete"
-                        onclick="deleteNews(${news.id})">
+                        class="delete-btn"
+                        onclick="deleteNews(${item.id})"
+                    >
                         Delete
                     </button>
 
                 </div>
 
-            </div>
+            `).join("");
 
-        `).join("");
+    }
 
 
     /* Reviews */
 
-    const reviewList=
-        document.getElementById("adminReviewList");
+    const reviews =
+        document.getElementById(
+            "adminReviewList"
+        );
+
 
     if(data.reviews.length===0){
 
-        reviewList.innerHTML=`
-            <p style="color:#71828b;">
-                No parent reviews yet.
-            </p>
+        reviews.innerHTML=`
+
+            <div class="admin-note">
+                No parent reviews have been submitted.
+            </div>
+
         `;
 
     }else{
 
-        reviewList.innerHTML=
-            data.reviews.map(review=>`
+        reviews.innerHTML =
+            data.reviews.map(item=>`
 
                 <div class="admin-item">
 
-                    <div class="admin-item-info">
+                    <div>
 
                         <strong>
-                            ${escapeHTML(review.name)}
-                            — ${"★".repeat(review.rating)}
+                            ${safe(item.name)}
+                            — ${"★".repeat(item.rating)}
                         </strong>
 
                         <span>
-                            ${escapeHTML(review.message)}
+                            ${safe(item.message)}
+                            <br>
+                            Status:
+                            ${
+                                item.approved
+                                ? "Published"
+                                : "Waiting for approval"
+                            }
                         </span>
 
                     </div>
 
-                    <div class="admin-actions">
+
+                    <div>
+
+                        ${
+                            !item.approved
+                            ?
+                            `<button
+                                class="delete-btn"
+                                style="
+                                    background:#e7f8ed;
+                                    color:#227345;
+                                    margin-right:5px;
+                                "
+                                onclick="approveReview(${item.id})"
+                            >
+                                Approve
+                            </button>`
+                            :
+                            ""
+                        }
+
 
                         <button
-                            class="small-btn delete"
-                            onclick="deleteReview(${review.id})">
+                            class="delete-btn"
+                            onclick="deleteReview(${item.id})"
+                        >
                             Delete
                         </button>
 
@@ -3985,48 +4681,53 @@ function renderAdmin(){
 
     /* Messages */
 
-    const messageList=
-        document.getElementById("adminMessageList");
+    const messages =
+        document.getElementById(
+            "adminMessageList"
+        );
+
 
     if(data.messages.length===0){
 
-        messageList.innerHTML=`
-            <p style="color:#71828b;">
-                No messages yet.
-            </p>
+        messages.innerHTML=`
+
+            <div class="admin-note">
+                No messages have been received.
+            </div>
+
         `;
 
     }else{
 
-        messageList.innerHTML=
-            data.messages.map(message=>`
+        messages.innerHTML =
+            data.messages.map(item=>`
 
                 <div class="admin-item">
 
-                    <div class="admin-item-info">
+                    <div>
 
                         <strong>
-                            ${escapeHTML(message.subject)}
+                            ${safe(item.subject)}
                         </strong>
 
                         <span>
-                            From: ${escapeHTML(message.name)}
-                            · ${escapeHTML(message.email)}
+                            From:
+                            ${safe(item.name)}
                             <br>
-                            ${escapeHTML(message.message)}
+                            ${safe(item.email)}
+                            <br>
+                            ${safe(item.message)}
                         </span>
 
                     </div>
 
-                    <div class="admin-actions">
 
-                        <button
-                            class="small-btn delete"
-                            onclick="deleteMessage(${message.id})">
-                            Delete
-                        </button>
-
-                    </div>
+                    <button
+                        class="delete-btn"
+                        onclick="deleteMessage(${item.id})"
+                    >
+                        Delete
+                    </button>
 
                 </div>
 
@@ -4037,51 +4738,60 @@ function renderAdmin(){
 
     /* Admissions */
 
-    const admissionList=
-        document.getElementById("adminAdmissionList");
+    const admissions =
+        document.getElementById(
+            "adminAdmissionList"
+        );
+
 
     if(data.admissions.length===0){
 
-        admissionList.innerHTML=`
-            <p style="color:#71828b;">
-                No admission enquiries yet.
-            </p>
+        admissions.innerHTML=`
+
+            <div class="admin-note">
+                No admission enquiries have been received.
+            </div>
+
         `;
 
     }else{
 
-        admissionList.innerHTML=
+        admissions.innerHTML =
             data.admissions.map(item=>`
 
                 <div class="admin-item">
 
-                    <div class="admin-item-info">
+                    <div>
 
                         <strong>
-                            ${escapeHTML(item.studentName)}
+                            ${safe(item.student)}
                         </strong>
 
                         <span>
-                            Parent: ${escapeHTML(item.parentName)}
+                            Parent:
+                            ${safe(item.parent)}
                             <br>
-                            Class: ${escapeHTML(item.className)}
+                            Class:
+                            ${safe(item.className)}
                             <br>
-                            Phone: ${escapeHTML(item.phone)}
+                            Phone:
+                            ${safe(item.phone)}
                             <br>
-                            Email: ${escapeHTML(item.email)}
+                            Email:
+                            ${safe(item.email)}
+                            <br>
+                            ${safe(item.message)}
                         </span>
 
                     </div>
 
-                    <div class="admin-actions">
 
-                        <button
-                            class="small-btn delete"
-                            onclick="deleteAdmission(${item.id})">
-                            Delete
-                        </button>
-
-                    </div>
+                    <button
+                        class="delete-btn"
+                        onclick="deleteAdmission(${item.id})"
+                    >
+                        Delete
+                    </button>
 
                 </div>
 
@@ -4090,55 +4800,62 @@ function renderAdmin(){
     }
 
 
-    /* Applications */
+    /* Teacher Applications */
 
-    const applicationList=
-        document.getElementById("adminApplicationList");
+    const applications =
+        document.getElementById(
+            "adminApplicationList"
+        );
+
 
     if(data.applications.length===0){
 
-        applicationList.innerHTML=`
-            <p style="color:#71828b;">
-                No teacher applications yet.
-            </p>
+        applications.innerHTML=`
+
+            <div class="admin-note">
+                No teacher applications have been received.
+            </div>
+
         `;
 
     }else{
 
-        applicationList.innerHTML=
+        applications.innerHTML =
             data.applications.map(item=>`
 
                 <div class="admin-item">
 
-                    <div class="admin-item-info">
+                    <div>
 
                         <strong>
-                            ${escapeHTML(item.name)}
+                            ${safe(item.name)}
                         </strong>
 
                         <span>
-                            Email: ${escapeHTML(item.email)}
+                            Email:
+                            ${safe(item.email)}
                             <br>
-                            Phone: ${escapeHTML(item.phone)}
+                            Phone:
+                            ${safe(item.phone)}
                             <br>
-                            Subject: ${escapeHTML(item.subject)}
+                            Subject:
+                            ${safe(item.subject)}
                             <br>
-                            Experience: ${escapeHTML(item.experience)}
+                            Experience:
+                            ${safe(item.experience)}
                             <br>
-                            ${escapeHTML(item.message)}
+                            ${safe(item.message)}
                         </span>
 
                     </div>
 
-                    <div class="admin-actions">
 
-                        <button
-                            class="small-btn delete"
-                            onclick="deleteApplication(${item.id})">
-                            Delete
-                        </button>
-
-                    </div>
+                    <button
+                        class="delete-btn"
+                        onclick="deleteApplication(${item.id})"
+                    >
+                        Delete
+                    </button>
 
                 </div>
 
@@ -4149,131 +4866,406 @@ function renderAdmin(){
 }
 
 
-/* ==========================================
-   EXPORT DATA
-========================================== */
+/* =========================================================
+   DELETE FUNCTIONS
+   ========================================================= */
 
-function exportData(){
-
-    const blob=new Blob(
-        [JSON.stringify(data,null,2)],
-        {type:"application/json"}
-    );
-
-    const url=URL.createObjectURL(blob);
-
-    const a=document.createElement("a");
-
-    a.href=url;
-
-    a.download="bright-beginning-website-data.json";
-
-    a.click();
-
-    URL.revokeObjectURL(url);
-
-    showToast("Website data exported.");
-
-}
-
-
-/* ==========================================
-   RESET DATA
-========================================== */
-
-function resetData(){
+function deleteTeacher(id){
 
     if(!confirm(
-        "Are you sure? This will remove your saved website data."
+        "Remove this teacher?"
     )){
         return;
     }
 
-    localStorage.removeItem("brightBeginningData");
+    data.teachers =
+        data.teachers.filter(
+            item=>item.id!==id
+        );
 
-    data=loadData();
+    saveData();
 
     renderWebsite();
 
-    populateSchoolForm();
-
-    showToast("Website data reset.");
+    toast("Teacher removed.");
 
 }
 
 
-/* ==========================================
-   ADMIN ACCESS
-========================================== */
+function deleteNews(id){
 
-/*
-   Open admin login with:
+    if(!confirm(
+        "Delete this announcement?"
+    )){
+        return;
+    }
 
-   Ctrl + Shift + A
-*/
+    data.announcements =
+        data.announcements.filter(
+            item=>item.id!==id
+        );
 
-document.addEventListener("keydown",(e)=>{
+    saveData();
 
-    if(e.ctrlKey && e.shiftKey && e.key.toLowerCase()==="a"){
+    renderWebsite();
 
-        e.preventDefault();
+    toast("Announcement deleted.");
 
-        openModal("loginModal");
+}
+
+
+function approveReview(id){
+
+    const review =
+        data.reviews.find(
+            item=>item.id===id
+        );
+
+
+    if(review){
+
+        review.approved=true;
+
+        saveData();
+
+        renderWebsite();
+
+        toast("Review published.");
 
     }
 
-});
+}
 
 
-/* ==========================================
+function deleteReview(id){
+
+    if(!confirm(
+        "Delete this review?"
+    )){
+        return;
+    }
+
+    data.reviews =
+        data.reviews.filter(
+            item=>item.id!==id
+        );
+
+    saveData();
+
+    renderWebsite();
+
+    toast("Review deleted.");
+
+}
+
+
+function deleteMessage(id){
+
+    data.messages =
+        data.messages.filter(
+            item=>item.id!==id
+        );
+
+    saveData();
+
+    renderAdmin();
+
+    toast("Message deleted.");
+
+}
+
+
+function deleteAdmission(id){
+
+    data.admissions =
+        data.admissions.filter(
+            item=>item.id!==id
+        );
+
+    saveData();
+
+    renderAdmin();
+
+    toast("Admission enquiry deleted.");
+
+}
+
+
+function deleteApplication(id){
+
+    data.applications =
+        data.applications.filter(
+            item=>item.id!==id
+        );
+
+    saveData();
+
+    renderAdmin();
+
+    toast("Application deleted.");
+
+}
+
+
+/* =========================================================
+   ADMIN FORM VALUES
+   ========================================================= */
+
+function loadAdminValues(){
+
+    document.getElementById(
+        "editSchoolName"
+    ).value =
+        data.school.name;
+
+
+    document.getElementById(
+        "editEmail"
+    ).value =
+        data.school.email;
+
+
+    document.getElementById(
+        "editPhone"
+    ).value =
+        data.school.phone;
+
+
+    document.getElementById(
+        "editAddress"
+    ).value =
+        data.school.address;
+
+
+    document.getElementById(
+        "editHours"
+    ).value =
+        data.school.hours;
+
+
+    document.getElementById(
+        "editHero"
+    ).value =
+        data.school.hero;
+
+
+    document.getElementById(
+        "editAbout"
+    ).value =
+        data.school.about;
+
+
+    document.getElementById(
+        "editStudents"
+    ).value =
+        data.stats.students;
+
+
+    document.getElementById(
+        "editTeachersCount"
+    ).value =
+        data.stats.teachers;
+
+
+    document.getElementById(
+        "editClasses"
+    ).value =
+        data.stats.classes;
+
+
+    document.getElementById(
+        "editYears"
+    ).value =
+        data.stats.years;
+
+}
+
+
+/* =========================================================
+   EXPORT
+   ========================================================= */
+
+function exportData(){
+
+    const blob =
+        new Blob(
+            [
+                JSON.stringify(
+                    data,
+                    null,
+                    2
+                )
+            ],
+            {
+                type:"application/json"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+
+    const link =
+        document.createElement("a");
+
+
+    link.href=url;
+
+    link.download=
+        "bright-beggining-data.json";
+
+
+    link.click();
+
+    URL.revokeObjectURL(url);
+
+    toast(
+        "Website data exported."
+    );
+
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+function resetData(){
+
+    if(!confirm(
+        "Reset all saved website data?"
+    )){
+        return;
+    }
+
+
+    localStorage.removeItem(
+        "brightBegginingData"
+    );
+
+
+    data =
+        JSON.parse(
+            JSON.stringify(defaultData)
+        );
+
+
+    renderWebsite();
+
+    loadAdminValues();
+
+    toast(
+        "Website data reset."
+    );
+
+}
+
+
+/* =========================================================
+   ADMIN SHORTCUT
+   ========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event=>{
+
+        if(
+            event.ctrlKey &&
+            event.shiftKey &&
+            event.key.toLowerCase()==="a"
+        ){
+
+            event.preventDefault();
+
+            openModal("loginModal");
+
+        }
+
+    }
+);
+
+
+/* =========================================================
    BACK TO TOP
-========================================== */
+   ========================================================= */
 
-const backTop=
-    document.getElementById("backTop");
+const backTop =
+    document.getElementById(
+        "backTop"
+    );
 
-window.addEventListener("scroll",()=>{
 
-    if(window.scrollY>500){
+window.addEventListener(
+    "scroll",
+    ()=>{
 
-        backTop.classList.add("show");
+        if(window.scrollY>500){
 
-    }else{
+            backTop.classList.add(
+                "show"
+            );
 
-        backTop.classList.remove("show");
+        }else{
+
+            backTop.classList.remove(
+                "show"
+            );
+
+        }
 
     }
-
-});
-
-
-backTop.addEventListener("click",()=>{
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
-});
+);
 
 
-/* ==========================================
-   YEAR
-========================================== */
+backTop.addEventListener(
+    "click",
+    ()=>{
 
-document.getElementById("year")
-    .textContent=new Date().getFullYear();
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    }
+);
 
 
-/* ==========================================
-   INITIALIZE
-========================================== */
+/* =========================================================
+   START
+   ========================================================= */
+
+document.getElementById(
+    "year"
+).textContent =
+    new Date().getFullYear();
+
 
 renderWebsite();
 
-populateSchoolForm();
+loadAdminValues();
+
+
+window.addEventListener(
+    "load",
+    ()=>{
+
+        setTimeout(
+            ()=>{
+
+                document
+                .getElementById("loader")
+                .classList.add("hidden");
+
+            },
+            700
+        );
+
+    }
+);
 
 </script>
 
 </body>
 </html>
+```
